@@ -1,4 +1,5 @@
 <?php
+
 namespace fize\xml;
 
 use SimpleXMLElement;
@@ -6,6 +7,7 @@ use DOMElement;
 
 /**
  * Dom管理类
+ * @package fize\xml
  */
 class Dom
 {

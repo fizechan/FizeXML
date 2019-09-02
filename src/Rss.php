@@ -9,6 +9,7 @@ use fize\io\File;
 
 /**
  * RSS生成类
+ * @package fize\xml
  */
 class Rss
 {
@@ -91,26 +92,26 @@ class Rss
      */
     public function setChannel($key, $value, array $attrs = [])
     {
-        if(!in_array($key, self::$CHANNEL_KEYS)){
+        if (!in_array($key, self::$CHANNEL_KEYS)) {
             throw new Exception("channel节点不支持子节点{$key}");
         }
 
-        if ($value instanceof DOMElement){
+        if ($value instanceof DOMElement) {
             $dom = $this->doc->createElement($key);
             $dom->appendChild($value);
-        }else{
+        } else {
             $dom = $this->doc->createElement($key, $value);
         }
-        if($attrs){
-            foreach ($attrs as $k => $v){
+        if ($attrs) {
+            foreach ($attrs as $k => $v) {
                 $dom->setAttribute($k, $v);
             }
         }
 
         $elt = $this->channel->getElementsByTagName($key);
-        if($elt && $elt->length > 0){
+        if ($elt && $elt->length > 0) {
             $this->channel->replaceChild($dom, $elt[0]);
-        }else{
+        } else {
             $this->channel->appendChild($dom);
         }
     }
@@ -123,7 +124,7 @@ class Rss
     public function setChannelCategory($category, $domain = null)
     {
         $attrs = [];
-        if(!is_null($domain)){
+        if (!is_null($domain)) {
             $attrs['domain'] = $domain;
         }
         $this->setChannel('category', $category, $attrs);
@@ -157,15 +158,15 @@ class Rss
         $image->appendChild($url);
         $title = $this->doc->createElement('title', $title);
         $image->appendChild($title);
-        if(!is_null($description)){
+        if (!is_null($description)) {
             $description = $this->doc->createElement('description', $description);
             $image->appendChild($description);
         }
-        if(!is_null($width)){
+        if (!is_null($width)) {
             $width = $this->doc->createElement('width', $width);
             $image->appendChild($width);
         }
-        if(!is_null($height)){
+        if (!is_null($height)) {
             $height = $this->doc->createElement('height', $height);
             $image->appendChild($height);
         }
@@ -192,7 +193,7 @@ class Rss
             'es-mx', 'es-ni', 'es-pa', 'es-py', 'es-pe', 'es-pr', 'es-es', 'es-uy', 'es-ve', 'sv',
             'sv-fi', 'sv-se', 'tr', 'uk'
         ];
-        if(!in_array($lang, $langs)){
+        if (!in_array($lang, $langs)) {
             throw new Exception("channel子节点language不支持该语言");
         }
         $this->setChannel('language', $lang);
@@ -261,28 +262,28 @@ class Rss
         $description = $this->doc->createElement('description', $description);
         $item->appendChild($description);
 
-        if(is_null($pubDate)){
+        if (is_null($pubDate)) {
             $pubDate = date('Y-m-d H:i:s');
         }
-        if(is_numeric($pubDate)){
+        if (is_numeric($pubDate)) {
             $pubDate = date('Y-m-d H:i:s', $pubDate);
         }
         $pubDate = $this->doc->createElement('pubDate', $pubDate);
         $item->appendChild($pubDate);
 
-        foreach ($addns as $k => $v){
-            if(!in_array($k, self::$ITEM_KEYS)){
+        foreach ($addns as $k => $v) {
+            if (!in_array($k, self::$ITEM_KEYS)) {
                 throw new Exception("item节点不支持子节点{$k}");
             }
 
-            if(is_array($v)){
+            if (is_array($v)) {
                 $value = $v[0];
                 $attrs = $v[1];
                 $dom = $this->doc->createElement($k, $value);
-                foreach ($attrs as $key => $val){
+                foreach ($attrs as $key => $val) {
                     $dom->setAttribute($key, $val);
                 }
-            }else{
+            } else {
                 $dom = $this->doc->createElement($k, $v);
             }
             $item->appendChild($dom);
@@ -298,10 +299,10 @@ class Rss
      */
     public function fetch($format = true)
     {
-        if($this->channelSkipDays->getElementsByTagName('day')->length > 0){
+        if ($this->channelSkipDays->getElementsByTagName('day')->length > 0) {
             $this->channel->appendChild($this->channelSkipDays);
         }
-        if($this->channelSkipHours->getElementsByTagName('hour')->length > 0){
+        if ($this->channelSkipHours->getElementsByTagName('hour')->length > 0) {
             $this->channel->appendChild($this->channelSkipHours);
         }
         $this->rss->appendChild($this->channel);

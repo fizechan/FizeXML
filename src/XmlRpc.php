@@ -4,8 +4,8 @@ namespace fize\xml;
 
 /**
  * Description of XMLRPC
- * @todo 待删除
- * @author Administrator
+ * @todo 待测试
+ * @package fize\xml
  */
 class XmlRpc
 {

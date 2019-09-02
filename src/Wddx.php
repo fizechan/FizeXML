@@ -3,9 +3,8 @@
 namespace fize\xml;
 
 /**
- * Description of WDDX
- *
- * @author Administrator
+ * Class Wddx
+ * @package fize\xml
  */
 class Wddx
 {
@@ -14,7 +13,7 @@ class Wddx
      * 当前wddx上下文
      * @var resource
      */
-    private $_packet = null;
+    private $packet = null;
 
 
     public function __construct($comment = null)
@@ -29,8 +28,8 @@ class Wddx
      */
     public function packetStart($comment = null)
     {
-        $this->_packet = wddx_packet_start($comment);
-        return $this->_packet;
+        $this->packet = wddx_packet_start($comment);
+        return $this->packet;
     }
 
     /**
@@ -41,7 +40,7 @@ class Wddx
      */
     public function addVars($var_name, $_ = null)
     {
-        return wddx_add_vars($this->_packet, $var_name, $_);
+        return wddx_add_vars($this->packet, $var_name, $_);
     }
 
     /**
@@ -60,7 +59,7 @@ class Wddx
      */
     public function packetEnd()
     {
-        return wddx_packet_end($this->_packet);
+        return wddx_packet_end($this->packet);
     }
 
     /**

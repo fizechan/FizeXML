@@ -3,9 +3,8 @@
 namespace fize\xml;
 
 /**
- * Description of Xml
- *
- * @author Administrator
+ * Class Xml
+ * @package fize\xml
  */
 class Xml
 {
@@ -14,7 +13,7 @@ class Xml
      * 当前的XML解析器
      * @var resource
      */
-    private $_parser = null;
+    private $parser = null;
 
 
     /**
@@ -53,7 +52,7 @@ class Xml
      */
     public function getCurrentByteIndex()
     {
-        return xml_get_current_byte_index($this->_parser);
+        return xml_get_current_byte_index($this->parser);
     }
 
     /**
@@ -62,7 +61,7 @@ class Xml
      */
     public function getCurrentColumnNumber()
     {
-        return xml_get_current_column_number($this->_parser);
+        return xml_get_current_column_number($this->parser);
     }
 
     /**
@@ -71,7 +70,7 @@ class Xml
      */
     public function getCurrentLineNumber()
     {
-        return xml_get_current_line_number($this->_parser);
+        return xml_get_current_line_number($this->parser);
     }
 
     /**
@@ -80,7 +79,7 @@ class Xml
      */
     public function getErrorCode()
     {
-        return xml_get_error_code($this->_parser);
+        return xml_get_error_code($this->parser);
     }
 
     /**
@@ -92,7 +91,7 @@ class Xml
      */
     public function parseIntoStruct($data, array &$values, array &$index = null)
     {
-        return xml_parse_into_struct($this->_parser, $data, $values, $index);
+        return xml_parse_into_struct($this->parser, $data, $values, $index);
     }
 
     /**
@@ -103,7 +102,7 @@ class Xml
      */
     public function parse($data, $is_final = false)
     {
-        return xml_parse($this->_parser, $data, $is_final);
+        return xml_parse($this->parser, $data, $is_final);
     }
 
     /**
@@ -133,7 +132,7 @@ class Xml
      */
     public function parserFree()
     {
-        return xml_parser_free($this->_parser);
+        return xml_parser_free($this->parser);
     }
 
     /**
@@ -143,7 +142,7 @@ class Xml
      */
     public function parserGetOption($option)
     {
-        return xml_parser_get_option($this->_parser, $option);
+        return xml_parser_get_option($this->parser, $option);
     }
 
     /**
@@ -154,7 +153,7 @@ class Xml
      */
     public function parserSetOption($option, $value)
     {
-        return xml_parser_set_option($this->_parser, $option, $value);
+        return xml_parser_set_option($this->parser, $option, $value);
     }
 
     /**
@@ -164,7 +163,7 @@ class Xml
      */
     public function setCharacterDataHandler(callable $handler)
     {
-        return xml_set_character_data_handler($this->_parser, $handler);
+        return xml_set_character_data_handler($this->parser, $handler);
     }
 
     /**
@@ -174,7 +173,7 @@ class Xml
      */
     public function setDefaultHandler(callable $handler)
     {
-        return xml_set_default_handler($this->_parser, $handler);
+        return xml_set_default_handler($this->parser, $handler);
     }
 
     /**
@@ -185,7 +184,7 @@ class Xml
      */
     public function setElementHandler(callable $start_element_handler, callable $end_element_handler)
     {
-        return xml_set_element_handler($this->_parser, $start_element_handler, $end_element_handler);
+        return xml_set_element_handler($this->parser, $start_element_handler, $end_element_handler);
     }
 
     /**
@@ -195,7 +194,7 @@ class Xml
      */
     public function setEndNamespaceDeclHandler(callable $handler)
     {
-        return xml_set_end_namespace_decl_handler($this->_parser, $handler);
+        return xml_set_end_namespace_decl_handler($this->parser, $handler);
     }
 
     /**
@@ -205,7 +204,7 @@ class Xml
      */
     public function setExternalEntityRefHandler(callable $handler)
     {
-        return xml_set_external_entity_ref_handler($this->_parser, $handler);
+        return xml_set_external_entity_ref_handler($this->parser, $handler);
     }
 
     /**
@@ -215,7 +214,7 @@ class Xml
      */
     public function setNotationDeclHandler(callable $handler)
     {
-        return xml_set_notation_decl_handler($this->_parser, $handler);
+        return xml_set_notation_decl_handler($this->parser, $handler);
     }
 
     /**
@@ -225,7 +224,7 @@ class Xml
      */
     public function setObject(&$object)
     {
-        return xml_set_object($this->_parser, $object);
+        return xml_set_object($this->parser, $object);
     }
 
     /**
@@ -235,7 +234,7 @@ class Xml
      */
     public function setProcessingInstructionHandler(callable $handler)
     {
-        return xml_set_processing_instruction_handler($this->_parser, $handler);
+        return xml_set_processing_instruction_handler($this->parser, $handler);
     }
 
     /**
@@ -245,7 +244,7 @@ class Xml
      */
     public function setStartNamespaceDeclHandler(callable $handler)
     {
-        return xml_set_start_namespace_decl_handler($this->_parser, $handler);
+        return xml_set_start_namespace_decl_handler($this->parser, $handler);
     }
 
     /**
@@ -255,6 +254,6 @@ class Xml
      */
     public function setUnparsedEntityDeclHandler(callable $handler)
     {
-        return xml_set_unparsed_entity_decl_handler($this->_parser, $handler);
+        return xml_set_unparsed_entity_decl_handler($this->parser, $handler);
     }
 }

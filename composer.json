@@ -9,8 +9,15 @@
         }
     ],
     "require": {
-		"php": ">=7.0.0"
-	},
+		"php": ">=7.0.0",
+        "ext-simplexml": "*",
+        "ext-dom": "*",
+        "ext-libxml": "*",
+        "ext-wddx": "*",
+        "ext-xml": "*",
+        "ext-xmlrpc": "*",
+        "fize/io": "*@dev"
+    },
 	"autoload": {
         "psr-4": {
             "fize\\xml\\": "src"

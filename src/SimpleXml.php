@@ -7,6 +7,7 @@ use SimpleXMLElement;
 
 /**
  * XML加载类
+ * @package fize\xml
  */
 class SimpleXml
 {

@@ -7,6 +7,7 @@ use LibXMLError;
 
 /**
  *  LibXML扩展
+ * @package fize\xml
  */
 class LibXml
 {
