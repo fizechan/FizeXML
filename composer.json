@@ -1,6 +1,6 @@
 {
     "name": "fize/xml",
-    "description": "XML operation library, produced by FizeChan.",
+    "description": "XML operation library.",
     "license": "Apache-2.0",
     "authors": [
         {
@@ -10,13 +10,7 @@
     ],
     "require": {
 		"php": ">=7.0.0",
-        "ext-simplexml": "*",
-        "ext-dom": "*",
-        "ext-libxml": "*",
-        "ext-wddx": "*",
-        "ext-xml": "*",
-        "ext-xmlrpc": "*",
-        "fize/io": "*@dev"
+        "fize/io": "~3.1"
     },
 	"autoload": {
         "psr-4": {
