@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE directory [
+        <!ELEMENT directory (disclaimer3))>
+        <!ENTITY disclaimer1 SYSTEM "one.xml">
+        <!ENTITY disclaimer2 SYSTEM "two.xml">
+        <!ENTITY disclaimer3 "disclaimer3String">
+]>
+
+<directory>
+    &disclaimer1;
+    &disclaimer2;
+    <disclaimer3>
+        &disclaimer3;
+    </disclaimer3>
+</directory>

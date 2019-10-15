@@ -8,6 +8,7 @@ use DOMElement;
 
 /**
  * Dom管理类
+ * @notice 需要扩展：ext-dom
  * @package fize\xml
  */
 class Dom
@@ -18,7 +19,7 @@ class Dom
      * @param SimpleXMLElement $node SimpleXMLElement对象
      * @return DOMElement
      */
-    public static function importSimplexml(SimpleXMLElement $node)
+    public static function importSimpleXml(SimpleXMLElement $node)
     {
         return dom_import_simplexml($node);
     }

@@ -1,27 +1,27 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-namespace app\controller;
-
+use PHPUnit\Framework\TestCase;
 use fize\xml\Rss;
 
-/**
- * Description of Index
- *
- * @author Administrator
- */
-class ControllerFizeXmlRss
+
+class RssTest extends TestCase
 {
 
-    /**
-	 * 测试1
-	 */
-	public function actionDisplay()
+    public function testDisplay()
+    {
+        $cmd = 'start cmd /k "cd /d %cd%/website &&php -S localhost:8123"';
+        $pid = popen($cmd, 'r');
+        pclose($pid);
+        sleep(3);  //待服务器启动
+
+        $cmd = 'start http://localhost:8123/rss_display.php';
+        $pid = popen($cmd, 'r');
+        pclose($pid);
+
+        self::assertTrue(true);
+    }
+
+	public function testBuild()
     {
         $rss = new Rss('测试百度', 'http://www.baidu.com', '这一次我来测试下百度RSS！');
         $rss->setChannelCategory('RSS', 'syndic8');
@@ -51,8 +51,8 @@ class ControllerFizeXmlRss
             'category' => [null, ['domain' => 'syndic8']]
         ]);
 
-        $rss->display();
+        $rss->build('./data/rss.xml');
 
-        $rss->build('./rss.xml');
+        self::assertTrue(true);
 	}
 }

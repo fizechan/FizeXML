@@ -1,18 +1,14 @@
 <?php
+/** @noinspection PhpComposerExtensionStubsInspection */
 
-namespace app\controller;
-
+use PHPUnit\Framework\TestCase;
 use fize\xml\Dom;
 use fize\xml\SimpleXml;
-use DOMDocument;
 
-/**
- * 测试DOM类
- */
-class ControllerFizeXmlDom
+class DomTest extends TestCase
 {
 
-	public function actionImportSimplexml()
+    public function testImportSimplexml()
     {
         $sxe = SimpleXml::loadString('<books><book><title>blah</title></book></books>');
 
@@ -21,7 +17,7 @@ class ControllerFizeXmlDom
             exit;
         }
 
-        $dom_sxe = Dom::importSimplexml($sxe);
+        $dom_sxe = Dom::importSimpleXml($sxe);
         if (!$dom_sxe) {
             echo 'Error while converting XML';
             exit;
@@ -32,5 +28,7 @@ class ControllerFizeXmlDom
         $dom->appendChild($dom_sxe);
 
         echo $dom->saveXML();
-	}
+
+        self::assertTrue(true);
+    }
 }

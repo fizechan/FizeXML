@@ -330,6 +330,7 @@ class Rss
     public function build($path, $format = true)
     {
         $file = new File($path, 'w+');
+        $file->open();
         $file->write($this->fetch($format));
     }
 }

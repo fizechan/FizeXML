@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!DOCTYPE note [
+        <!ELEMENT note (to,from,heading,body,copyright)>
+        <!ELEMENT to      (#PCDATA)>
+        <!ELEMENT from    (#PCDATA)>
+        <!ELEMENT heading (#PCDATA)>
+        <!ELEMENT body    (#PCDATA)>
+        <!ELEMENT orders (item+)>
+        <!ELEMENT item (itemNumber,description,quantity,price)>
+        <!ELEMENT itemNumber      (#PCDATA)>
+        <!ELEMENT description    (#PCDATA)>
+        <!ELEMENT quantity (#PCDATA)>
+        <!ELEMENT price    (#PCDATA)>
+        <!ELEMENT copyright      (#PCDATA)>
+        <!ENTITY copyright SYSTEM "entity.xml">
+]>
+
+<note>
+    <to>George</to>
+    <from>John</from>
+    <heading>Reminder</heading>
+    <body>Don't forget the meeting!</body>
+    &copyright;
+</note>
