@@ -1,10 +1,12 @@
-<?php
+<?php /** @noinspection PhpLanguageLevelInspection */
+
 /** @noinspection PhpComposerExtensionStubsInspection */
 
 namespace fize\xml;
 
 /**
- * Class Wddx
+ * Wddx类
+ * @deprecated 该扩展在PHP7.4时已被移除，请勿使用
  * @package fize\xml
  */
 class Wddx
@@ -16,7 +18,10 @@ class Wddx
      */
     private $packet = null;
 
-
+    /**
+     * 初始化，开始一个wddx上下文
+     * @param string $comment 注解
+     */
     public function __construct($comment = null)
     {
         $this->packetStart($comment);
@@ -76,12 +81,14 @@ class Wddx
 
     /**
      * 对变量名进行序列化，返回对应的wddx字符串
+     * @since PHP5.6
+     * @todo 由于wddx_serialize_vars直接调用了外部变量，只能直接使用wddx_serialize_vars
      * @param mixed $var_name 变量名或者变量名组成的数组
-     * @param mixed $_ 可继续添加变量名
+     * @param mixed ...$var_names 变量名或者变量名组成的数组
      * @return string 失败时返回false
      */
-    public static function serializeVars($var_name, $_ = null)
+    public static function serializeVars($var_name, ...$var_names)
     {
-        return wddx_serialize_vars($var_name, $_);
+        return wddx_serialize_vars($var_name, ...$var_names);
     }
 }
