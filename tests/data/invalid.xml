@@ -1,0 +1,21 @@
+<orders>
+    <item>
+        <itemNumber>ksu-0384</itemNumber>
+        <description>LCD液晶显示器</description>
+        <quantity>1</quantity>
+        <price>358.00</price>
+    </item>
+    <item>
+        <itemNumber>ksu-0511</itemNumber>
+        <description>音箱</description>
+        <quantity>1</quantity>
+        <price>16.50</price>
+    </item>
+    <item>
+        <itemNumber>ksu-7710</itemNumber>
+        <description>鼠标</description>
+        <quantity>1</quantity>
+        <price>8.50</price>
+    </item>
+</item>
+</orders>

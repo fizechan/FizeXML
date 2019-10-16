@@ -4,7 +4,7 @@
 namespace fize\xml;
 
 /**
- * Class Xml
+ * XML解析器
  * @package fize\xml
  */
 class Xml
@@ -16,9 +16,9 @@ class Xml
      */
     private $parser = null;
 
-
     /**
      * 用 UTF-8 方式编码的 ISO-8859-1 字符串转换成单字节的 ISO-8859-1 字符串。
+     * @deprecated 将转移到项目FizeCrypt中
      * @param string $data 待转化字符串
      * @return string
      */
@@ -29,6 +29,7 @@ class Xml
 
     /**
      * 将 ISO-8859-1 编码的字符串转换为 UTF-8 编码
+     * @deprecated 将转移到项目FizeCrypt中
      * @param string $data 待转化字符串
      * @return string
      */
@@ -90,7 +91,7 @@ class Xml
      * @param array $index 含有指向 values 数组中对应值的指针
      * @return int 失败返回 0，成功返回 1
      */
-    public function parseIntoStruct($data, array &$values, array &$index = null)
+    public function parseIntoStruct($data, &$values, &$index = null)
     {
         return xml_parse_into_struct($this->parser, $data, $values, $index);
     }
@@ -112,9 +113,10 @@ class Xml
      * @param string $separator 命名空间和标签名的分隔符
      * @return resource
      */
-    public static function parserCreateNs($encoding = null, $separator = ":")
+    public function parserCreateNs($encoding = null, $separator = ":")
     {
-        return xml_parser_create_ns($encoding, $separator);
+        $this->parser = xml_parser_create_ns($encoding, $separator);
+        return $this->parser;
     }
 
     /**
@@ -122,9 +124,10 @@ class Xml
      * @param string $encoding 指定解析后输出数据的编码
      * @return resource
      */
-    public static function parserCreate($encoding = null)
+    public function parserCreate($encoding = null)
     {
-        return xml_parser_create($encoding);
+        $this->parser = xml_parser_create($encoding);
+        return $this->parser;
     }
 
     /**
@@ -190,6 +193,7 @@ class Xml
 
     /**
      * 建立终止命名空间声明处理器
+     * @notice 该事件在LibXML不受支持.
      * @param callable $handler 处理器函数必须为handler ( resource $parser , string $prefix )
      * @return bool 成功时返回 TRUE， 或者在失败时返回 FALSE。
      */
