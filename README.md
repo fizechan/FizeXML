@@ -1,2 +1,2 @@
 # FizeXml
-XML operation library
+XML操作类库。
