@@ -4,23 +4,22 @@
 namespace fize\xml;
 
 /**
- * Description of XMLRPC
- * @todo 待测试
+ * XMLRPC
  * @package fize\xml
  */
 class XmlRpc
 {
     /**
-     * @var resource
+     * @var resource XMLRPC服务
      */
     private $server;
 
     /**
      * 将 XML 译码为 PHP 本身的类型
-     * @param $xml
-     * @param $method
-     * @param null $encoding
-     * @return mixed
+     * @param string $xml XMLRPC请求体
+     * @param string $method 返回方法名
+     * @param string $encoding 指定编码
+     * @return mixed 返回参数列表
      */
     public static function decodeRequest($xml, &$method, $encoding = null)
     {
@@ -29,8 +28,8 @@ class XmlRpc
 
     /**
      * 将 XML 译码为 PHP 本身的类型
-     * @param $xml
-     * @param string $encoding
+     * @param string $xml 待译码XML
+     * @param string $encoding 指定编码
      * @return mixed
      */
     public static function decode($xml, $encoding = "iso-8859-1")
@@ -40,20 +39,20 @@ class XmlRpc
 
     /**
      * 为 PHP 的值生成 XML
-     * @param $method
-     * @param $params
-     * @param array $output_options
-     * @return string
+     * @param string $method 方法名称
+     * @param mixed $params 参数
+     * @param array $output_options 输出选项
+     * @return string 完整XML
      */
-    public static function encodeRequest($method, $params, array $output_options = null)
+    public static function encodeRequest($method, $params, array $output_options = [])
     {
         return xmlrpc_encode_request($method, $params, $output_options);
     }
 
     /**
      * 为 PHP 的值生成 XML
-     * @param $value
-     * @return string
+     * @param mixed $value 值
+     * @return string 完整XML
      */
     public static function encode($value)
     {
@@ -62,8 +61,8 @@ class XmlRpc
 
     /**
      * 为 PHP 的值获取 xmlrpc 的类型
-     * @param mixed $value
-     * @return string
+     * @param mixed $value 值
+     * @return string 值类型
      */
     public static function getType($value)
     {
@@ -124,7 +123,7 @@ class XmlRpc
 
     /**
      * 销毁服务端资源
-     * @return int
+     * @return bool
      */
     public function destroy()
     {
