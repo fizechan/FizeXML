@@ -10,7 +10,6 @@ use fize\io\File;
 
 /**
  * RSS生成类
- * @package fize\xml
  */
 class Rss
 {
@@ -62,7 +61,6 @@ class Rss
      * @param string $title 定义频道的标题
      * @param string $link 定义指向频道的超链接
      * @param string $description 描述频道
-     * @throws Exception
      */
     public function __construct($title, $link, $description)
     {
@@ -85,9 +83,12 @@ class Rss
     }
 
     /**
-     * 设置channel子节点
+     * 设置 channel 子节点
+     *
+     * 参数 `$value` :
+     *   为null时不添加，为DOMElement则插入该节点，为字符串时则写入该字符串
      * @param string $key 子节点名称
-     * @param mixed $value 为null时不添加，为DOMElement则插入该节点，为字符串时则写入该字符串
+     * @param mixed $value 节点值
      * @param array $attrs 该节点属性
      * @throws Exception
      */
@@ -118,9 +119,12 @@ class Rss
     }
 
     /**
-     * 设置channel子节点category
+     * 设置 channel 子节点 category
+     *
+     * 参数 `$domain` :
+     *   字符串或 URL，标识分类的分类法
      * @param string $category
-     * @param string $domain category的domain属性，字符串或 URL，标识分类的分类法
+     * @param string $domain category 的 domain 属性
      */
     public function setChannelCategory($category, $domain = null)
     {
@@ -132,7 +136,7 @@ class Rss
     }
 
     /**
-     * 设置channel子节点cloud
+     * 设置 channel 子节点 cloud
      * @param array $attrs 属性数组
      */
     public function setChannelCloud(array $attrs)
@@ -141,13 +145,18 @@ class Rss
     }
 
     /**
-     * 设置channel子节点image
+     * 设置 channel 子节点 image
+     *
+     * 参数 `$width` :
+     *   默认是 88。最大值是 144。
+     * 参数 `$height` :
+     *   默认是 31。最大值是 400。
      * @param string $link 定义提供该频道的网站的超连接
      * @param string $url 定义图像的 URL
      * @param string $title 定义当图片不能显示时所显示的替代文本
      * @param string $description 规定图片链接的 HTML 标题属性中的文本
-     * @param int $width 定义图像的宽度。默认是 88。最大值是 144。
-     * @param int $height 定义图像的高度。默认是 31。最大值是 400。
+     * @param int $width 定义图像的宽度
+     * @param int $height 定义图像的高度
      */
     public function setChannelImage($link, $url, $title, $description = null, $width = null, $height = null)
     {
@@ -175,7 +184,7 @@ class Rss
     }
 
     /**
-     * 设置channel子节点language
+     * 设置 channel 子节点 language
      * @see http://www.rssboard.org/rss-language-codes
      * @param string $lang 对应语言简写
      * @throws Exception
@@ -201,7 +210,7 @@ class Rss
     }
 
     /**
-     * 添加规定在那些天，聚合器忽略更新feed
+     * 添加规定在那些天，聚合器忽略更新 feed
      * @param string $day 哪些天
      */
     public function addChannelSkipDay($day)
@@ -211,7 +220,9 @@ class Rss
     }
 
     /**
-     * 规定在那些小时，聚合器忽略更新feed。最多可以用24个 <skipHours> 元素。
+     * 规定在那些小时，聚合器忽略更新 feed。
+     *
+     * 最多可以用24个 <skipHours> 元素。
      * @param int $hour 0 表示午夜。
      */
     public function addChannelSkipHour($hour)
@@ -221,7 +232,7 @@ class Rss
     }
 
     /**
-     * 设置channel子节点language,规定应当与 feed 一同显示的文本输入域。
+     * 设置 channel 子节点 language,规定应当与 feed 一同显示的文本输入域。
      * @param string $name 定义在文本输入域中的文本对象的名称。
      * @param string $title 定义文本输入域中的提交按钮的标注 (label)
      * @param string $link 定义处理文本输入的 CGI 脚本的 URL
@@ -244,7 +255,7 @@ class Rss
     }
 
     /**
-     * 添加item项
+     * 添加 item 项
      * @param string $title
      * @param string $link
      * @param string $description
@@ -294,7 +305,7 @@ class Rss
     }
 
     /**
-     * 返回RSS的XML为字符串
+     * 返回 RSS 的 XML 为字符串
      * @param bool $format 是否格式化
      * @return string
      */
@@ -313,7 +324,7 @@ class Rss
     }
 
     /**
-     * 输出RSS的XML到浏览器
+     * 输出 RSS 的 XML 到浏览器
      * @param bool $format 是否格式化
      */
     public function display($format = true)
@@ -323,7 +334,7 @@ class Rss
     }
 
     /**
-     * 保存RSS到指定文件，注意该文件后缀必须为xml
+     * 保存 RSS 到指定文件，注意该文件后缀必须为 xml
      * @param string $path 要保存的文件路径
      * @param bool $format 是否格式化
      */
@@ -332,5 +343,6 @@ class Rss
         $file = new File($path, 'w+');
         $file->open();
         $file->write($this->fetch($format));
+        $file->close();
     }
 }

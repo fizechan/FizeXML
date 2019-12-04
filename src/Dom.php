@@ -9,7 +9,6 @@ use DOMElement;
 /**
  * Dom管理类
  * @notice 需要扩展：ext-dom
- * @package fize\xml
  */
 class Dom
 {

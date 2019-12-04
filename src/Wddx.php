@@ -1,11 +1,11 @@
-<?php /** @noinspection PhpLanguageLevelInspection */
-
+<?php
+/** @noinspection PhpLanguageLevelInspection */
 /** @noinspection PhpComposerExtensionStubsInspection */
 
 namespace fize\xml;
 
 /**
- * Wddx类
+ * Wddx 类
  * @deprecated 该扩展在PHP7.4时已被移除，请勿使用
  * @package fize\xml
  */
@@ -13,8 +13,7 @@ class Wddx
 {
 
     /**
-     * 当前wddx上下文
-     * @var resource
+     * @var resource 当前wddx上下文
      */
     private $packet = null;
 

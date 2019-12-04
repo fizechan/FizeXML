@@ -5,7 +5,6 @@ namespace fize\xml;
 
 /**
  * XMLRPC
- * @package fize\xml
  */
 class XmlRpc
 {
@@ -70,7 +69,7 @@ class XmlRpc
     }
 
     /**
-     * 确定数组的值代表一个XMLRPC故障
+     * 确定数组的值代表一个 XMLRPC 故障
      * @param array $arg
      * @return bool
      */

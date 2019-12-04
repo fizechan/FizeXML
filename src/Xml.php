@@ -4,39 +4,15 @@
 namespace fize\xml;
 
 /**
- * XML解析器
- * @package fize\xml
+ * XML 解析器
  */
 class Xml
 {
 
     /**
-     * 当前的XML解析器
-     * @var resource
+     * @var resource 当前的XML解析器
      */
     private $parser = null;
-
-    /**
-     * 用 UTF-8 方式编码的 ISO-8859-1 字符串转换成单字节的 ISO-8859-1 字符串。
-     * @deprecated 将转移到项目FizeCrypt中
-     * @param string $data 待转化字符串
-     * @return string
-     */
-    public static function utf8Decode($data)
-    {
-        return utf8_decode($data);
-    }
-
-    /**
-     * 将 ISO-8859-1 编码的字符串转换为 UTF-8 编码
-     * @deprecated 将转移到项目FizeCrypt中
-     * @param string $data 待转化字符串
-     * @return string
-     */
-    public static function utf8Encode($data)
-    {
-        return utf8_encode($data);
-    }
 
     /**
      * 根据给定的 code 获得 XML 解析器错误字符串。
@@ -99,7 +75,7 @@ class Xml
     /**
      * 开始解析一个 XML 文档
      * @param string $data 需要解析的数据集
-     * @param bool $is_final 如果被设置为 TRUE，则 data 为当前解析中最后一段数据。
+     * @param bool $is_final 是否为当前解析中最后一段数据。
      * @return int 成功时返回1，失败时返回0
      */
     public function parse($data, $is_final = false)
@@ -141,7 +117,10 @@ class Xml
 
     /**
      * 从 XML 解析器获取选项设置信息
-     * @param int $option 要获取的设置选项名称。可以使用 XML_OPTION_CASE_FOLDING 和 XML_OPTION_TARGET_ENCODING 常量
+     *
+     * 参数 `$option` :
+     *   可以使用 XML_OPTION_CASE_FOLDING 和 XML_OPTION_TARGET_ENCODING 常量。
+     * @param int $option 要获取的设置选项名称
      * @return mixed 如果失败返回false，同时产生E_WARNING警告
      */
     public function parserGetOption($option)
@@ -151,7 +130,10 @@ class Xml
 
     /**
      * 为指定 XML 解析进行选项设置
-     * @param int $option 要设置的选项名称。可以使用 XML_OPTION_CASE_FOLDING、XML_OPTION_SKIP_TAGSTART、XML_OPTION_SKIP_WHITE、XML_OPTION_TARGET_ENCODING常量
+     *
+     * 参数 `$option` :
+     *   可以使用 XML_OPTION_CASE_FOLDING、XML_OPTION_SKIP_TAGSTART、XML_OPTION_SKIP_WHITE、XML_OPTION_TARGET_ENCODING常量
+     * @param int $option 要设置的选项名称
      * @param mixed $value 要给选项设置的新值。
      * @return bool 成功返回true，失败返回false
      */
@@ -162,7 +144,10 @@ class Xml
 
     /**
      * 建立字符数据处理器
-     * @param callable $handler 处理函数的定义必须为handler( resource $parser , string $data )
+     *
+     * 参数 `$handler` :
+     *   处理函数的定义必须为handler( resource $parser , string $data )
+     * @param callable $handler 处理函数
      * @return bool 成功时返回 TRUE， 或者在失败时返回 FALSE。
      */
     public function setCharacterDataHandler(callable $handler)
@@ -172,7 +157,10 @@ class Xml
 
     /**
      * 建立默认处理器
-     * @param callable $handler 处理函数的定义必须为handler( resource $parser , string $data )
+     *
+     * 参数 `$handler` :
+     *   处理函数的定义必须为handler( resource $parser , string $data )
+     * @param callable $handler 处理函数
      * @return bool 成功时返回 TRUE， 或者在失败时返回 FALSE。
      */
     public function setDefaultHandler(callable $handler)
@@ -182,8 +170,13 @@ class Xml
 
     /**
      * 建立起始和终止元素处理器
-     * @param callable $start_element_handler 起始元素处理器，定义必须为start_element_handler ( resource $parser , string $name , array $attribs )
-     * @param callable $end_element_handler 终止元素处理器，定义必须为end_element_handler ( resource $parser , string $name )
+     *
+     * 参数 `$start_element_handler` :
+     *   定义必须为start_element_handler ( resource $parser , string $name , array $attribs )
+     * 参数 `$end_element_handler` :
+     *   定义必须为end_element_handler ( resource $parser , string $name )
+     * @param callable $start_element_handler 起始元素处理器
+     * @param callable $end_element_handler 终止元素处理器
      * @return bool 成功时返回 TRUE， 或者在失败时返回 FALSE。
      */
     public function setElementHandler(callable $start_element_handler, callable $end_element_handler)
@@ -193,8 +186,11 @@ class Xml
 
     /**
      * 建立终止命名空间声明处理器
-     * @notice 该事件在LibXML不受支持.
-     * @param callable $handler 处理器函数必须为handler ( resource $parser , string $prefix )
+     *
+     * 参数 `$handler` :
+     *   处理器函数必须为handler ( resource $parser , string $prefix )
+     * @notice 该事件在 LibXML 不受支持.
+     * @param callable $handler 处理器函数
      * @return bool 成功时返回 TRUE， 或者在失败时返回 FALSE。
      */
     public function setEndNamespaceDeclHandler(callable $handler)
@@ -204,7 +200,10 @@ class Xml
 
     /**
      * 建立外部实体指向处理器
-     * @param callable $handler 处理器函数必须为handler ( resource $parser , string $open_entity_names , string $base , string $system_id , string $public_id )
+     *
+     * 参数 `$handler` :
+     *   处理器函数必须为handler ( resource $parser , string $open_entity_names , string $base , string $system_id , string $public_id )
+     * @param callable $handler 处理器函数
      * @return bool 成功时返回 TRUE， 或者在失败时返回 FALSE。
      */
     public function setExternalEntityRefHandler(callable $handler)
@@ -214,7 +213,10 @@ class Xml
 
     /**
      * 建立注释声明处理器
-     * @param callable $handler 处理器函数必须为handler ( resource $parser , string $notation_name , string $base , string $system_id , string $public_id )
+     *
+     * 参数 `$handler` :
+     *   处理器函数必须为handler ( resource $parser , string $notation_name , string $base , string $system_id , string $public_id )
+     * @param callable $handler 处理器函数
      * @return bool 成功时返回 TRUE， 或者在失败时返回 FALSE。
      */
     public function setNotationDeclHandler(callable $handler)
@@ -234,7 +236,10 @@ class Xml
 
     /**
      * 建立处理指令（PI）处理器
-     * @param callable $handler 处理器函数必须为handler( resource $parser , string $target , string $data )
+     *
+     * 参数 `$handler` :
+     *   处理器函数必须为handler( resource $parser , string $target , string $data )
+     * @param callable $handler 处理器函数
      * @return bool 成功时返回 TRUE， 或者在失败时返回 FALSE。
      */
     public function setProcessingInstructionHandler(callable $handler)
@@ -244,7 +249,10 @@ class Xml
 
     /**
      * 建立起始命名空间声明处理器
-     * @param callable $handler 处理器函数必须为handler( resource $parser , string $prefix , string $uri )
+     *
+     * 参数 `$handler` :
+     *   处理器函数必须为handler( resource $parser , string $prefix , string $uri )
+     * @param callable $handler 处理器函数
      * @return bool 成功时返回 TRUE， 或者在失败时返回 FALSE。
      */
     public function setStartNamespaceDeclHandler(callable $handler)
@@ -254,7 +262,10 @@ class Xml
 
     /**
      * 建立未解析实体定义声明处理器
-     * @param callable $handler 处理器函数必须为handler( resource $parser , string $entity_name , string $base , string $system_id , string $public_id , string $notation_name )
+     *
+     * 参数 `$handler` :
+     *   处理器函数必须为handler( resource $parser , string $entity_name , string $base , string $system_id , string $public_id , string $notation_name )
+     * @param callable $handler 处理器函数
      * @return bool 成功时返回 TRUE， 或者在失败时返回 FALSE。
      */
     public function setUnparsedEntityDeclHandler(callable $handler)

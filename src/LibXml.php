@@ -7,8 +7,7 @@ namespace fize\xml;
 use LibXMLError;
 
 /**
- *  LibXML扩展
- * @package fize\xml
+ *  LibXML 扩展
  */
 class LibXml
 {
@@ -22,8 +21,10 @@ class LibXml
     }
 
     /**
-     * 禁用/启用加载外部实体(如DOM、XMLWriter、XMLReader)的能力。
-     * @param bool $disable 为true时禁用，默认为true
+     * 禁用/启用加载外部实体
+     *
+     * 外部实体 如DOM、XMLWriter、XMLReader。
+     * @param bool $disable 为 true 时禁用
      * @return bool 返回设置前的值
      */
     public static function disableEntityLoader($disable = true)
@@ -41,7 +42,7 @@ class LibXml
     }
 
     /**
-     * 返回最后一个LibXMLError错误对象
+     * 返回最后一个 LibXMLError 错误对象
      * @return LibXMLError
      */
     public static function getLastError()
@@ -59,8 +60,8 @@ class LibXml
     }
 
     /**
-     * 设置下一个libxml文档装入或写入的流上下文
-     * @param resource $streams_context 使用stream_context_create()创建的上下文
+     * 设置下一个 libxml 文档装入或写入的流上下文
+     * @param resource $streams_context 使用 stream_context_create() 创建的上下文
      */
     public static function setStreamsContext($streams_context)
     {
@@ -68,7 +69,7 @@ class LibXml
     }
 
     /**
-     * 禁用libxml错误，并允许用户根据需要获取错误信息
+     * 禁用 libxml 错误，并允许用户根据需要获取错误信息
      * @param bool $use_errors 禁用或启用用户错误句柄
      * @return bool 设置前的上一个值
      */
