@@ -4,7 +4,7 @@ use PHPUnit\Framework\TestCase;
 use fize\xml\Rss;
 
 
-class RssTest extends TestCase
+class TestRss extends TestCase
 {
 
     public function testDisplay()

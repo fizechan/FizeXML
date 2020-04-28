@@ -1,6 +1,4 @@
 <?php
-/** @noinspection PhpComposerExtensionStubsInspection */
-
 
 namespace fize\xml;
 

@@ -1,13 +1,10 @@
 <?php
-/** @noinspection PhpLanguageLevelInspection */
-/** @noinspection PhpComposerExtensionStubsInspection */
 
 namespace fize\xml;
 
 /**
- * Wddx 类
+ * Wddx
  * @deprecated 该扩展在PHP7.4时已被移除，请勿使用
- * @package fize\xml
  */
 class Wddx
 {
@@ -40,7 +37,7 @@ class Wddx
     /**
      * 添加变量到当前wddx上下文
      * @param mixed $var_name 变量1
-     * @param mixed $_ 可继续添加变量
+     * @param mixed $_        可继续添加变量
      * @return bool 成功时返回 TRUE， 或者在失败时返回 FALSE。
      */
     public function addVars($var_name, $_ = null)
@@ -69,7 +66,7 @@ class Wddx
 
     /**
      * 对一个变量进行序列化，返回对应的wddx字符串
-     * @param mixed $var 要序列化的变量
+     * @param mixed  $var     要序列化的变量
      * @param string $comment 注解
      * @return string 失败时返回false
      */
@@ -80,11 +77,11 @@ class Wddx
 
     /**
      * 对变量名进行序列化，返回对应的wddx字符串
-     * @since PHP5.6
-     * @todo 由于wddx_serialize_vars直接调用了外部变量，只能直接使用wddx_serialize_vars
-     * @param mixed $var_name 变量名或者变量名组成的数组
+     * @param mixed $var_name     变量名或者变量名组成的数组
      * @param mixed ...$var_names 变量名或者变量名组成的数组
      * @return string 失败时返回false
+     * @todo  由于wddx_serialize_vars直接调用了外部变量，只能直接使用wddx_serialize_vars
+     * @since PHP5.6
      */
     public static function serializeVars($var_name, ...$var_names)
     {

@@ -1,11 +1,10 @@
 <?php
-/** @noinspection PhpComposerExtensionStubsInspection */
 
 use PHPUnit\Framework\TestCase;
 use fize\xml\Dom;
 use fize\xml\SimpleXml;
 
-class DomTest extends TestCase
+class TestDom extends TestCase
 {
 
     public function testImportSimplexml()

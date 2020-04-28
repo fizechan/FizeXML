@@ -1,11 +1,10 @@
 <?php
-/** @noinspection PhpComposerExtensionStubsInspection */
 
 use PHPUnit\Framework\TestCase;
 use fize\xml\LibXml;
 use fize\xml\SimpleXml;
 
-class LibXmlTest extends TestCase
+class TestLibXml extends TestCase
 {
 
     public function testClearErrors()

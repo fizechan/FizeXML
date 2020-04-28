@@ -1,13 +1,12 @@
 <?php
-/** @noinspection PhpComposerExtensionStubsInspection */
 
 namespace fize\xml;
 
-use SimpleXMLElement;
 use DOMElement;
+use SimpleXMLElement;
 
 /**
- * Dom管理类
+ * Dom管理
  * @notice 需要扩展：ext-dom
  */
 class Dom

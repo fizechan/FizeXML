@@ -1,5 +1,4 @@
 <?php
-/** @noinspection PhpComposerExtensionStubsInspection */
 
 namespace fize\xml;
 
@@ -9,7 +8,7 @@ use Exception;
 use fize\io\File;
 
 /**
- * RSS生成类
+ * RSS生成
  */
 class Rss
 {
@@ -58,8 +57,8 @@ class Rss
 
     /**
      * 构造函数
-     * @param string $title 定义频道的标题
-     * @param string $link 定义指向频道的超链接
+     * @param string $title       定义频道的标题
+     * @param string $link        定义指向频道的超链接
      * @param string $description 描述频道
      */
     public function __construct($title, $link, $description)
@@ -87,9 +86,9 @@ class Rss
      *
      * 参数 `$value` :
      *   为null时不添加，为DOMElement则插入该节点，为字符串时则写入该字符串
-     * @param string $key 子节点名称
-     * @param mixed $value 节点值
-     * @param array $attrs 该节点属性
+     * @param string $key   子节点名称
+     * @param mixed  $value 节点值
+     * @param array  $attrs 该节点属性
      * @throws Exception
      */
     public function setChannel($key, $value, array $attrs = [])
@@ -151,12 +150,12 @@ class Rss
      *   默认是 88。最大值是 144。
      * 参数 `$height` :
      *   默认是 31。最大值是 400。
-     * @param string $link 定义提供该频道的网站的超连接
-     * @param string $url 定义图像的 URL
-     * @param string $title 定义当图片不能显示时所显示的替代文本
+     * @param string $link        定义提供该频道的网站的超连接
+     * @param string $url         定义图像的 URL
+     * @param string $title       定义当图片不能显示时所显示的替代文本
      * @param string $description 规定图片链接的 HTML 标题属性中的文本
-     * @param int $width 定义图像的宽度
-     * @param int $height 定义图像的高度
+     * @param int    $width       定义图像的宽度
+     * @param int    $height      定义图像的高度
      */
     public function setChannelImage($link, $url, $title, $description = null, $width = null, $height = null)
     {
@@ -233,9 +232,9 @@ class Rss
 
     /**
      * 设置 channel 子节点 language,规定应当与 feed 一同显示的文本输入域。
-     * @param string $name 定义在文本输入域中的文本对象的名称。
-     * @param string $title 定义文本输入域中的提交按钮的标注 (label)
-     * @param string $link 定义处理文本输入的 CGI 脚本的 URL
+     * @param string $name        定义在文本输入域中的文本对象的名称。
+     * @param string $title       定义文本输入域中的提交按钮的标注 (label)
+     * @param string $link        定义处理文本输入的 CGI 脚本的 URL
      * @param string $description 定义对文本输入域的描述
      */
     public function setChannelTextInput($name, $title, $link, $description)
@@ -259,8 +258,8 @@ class Rss
      * @param string $title
      * @param string $link
      * @param string $description
-     * @param mixed $pubDate 可以是时间戳或者时间字符串
-     * @param array $addns 其他属性
+     * @param mixed  $pubDate 可以是时间戳或者时间字符串
+     * @param array  $addns   其他属性
      * @throws Exception
      */
     function addItem($title, $link, $description, $pubDate = null, array $addns = [])
@@ -335,8 +334,8 @@ class Rss
 
     /**
      * 保存 RSS 到指定文件，注意该文件后缀必须为 xml
-     * @param string $path 要保存的文件路径
-     * @param bool $format 是否格式化
+     * @param string $path   要保存的文件路径
+     * @param bool   $format 是否格式化
      */
     public function build($path, $format = true)
     {

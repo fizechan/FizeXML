@@ -1,5 +1,4 @@
 <?php
-/** @noinspection PhpComposerExtensionStubsInspection */
 
 namespace fize\xml;
 
@@ -15,8 +14,8 @@ class XmlRpc
 
     /**
      * 将 XML 译码为 PHP 本身的类型
-     * @param string $xml XMLRPC请求体
-     * @param string $method 返回方法名
+     * @param string $xml      XMLRPC请求体
+     * @param string $method   返回方法名
      * @param string $encoding 指定编码
      * @return mixed 返回参数列表
      */
@@ -27,7 +26,7 @@ class XmlRpc
 
     /**
      * 将 XML 译码为 PHP 本身的类型
-     * @param string $xml 待译码XML
+     * @param string $xml      待译码XML
      * @param string $encoding 指定编码
      * @return mixed
      */
@@ -38,9 +37,9 @@ class XmlRpc
 
     /**
      * 为 PHP 的值生成 XML
-     * @param string $method 方法名称
-     * @param mixed $params 参数
-     * @param array $output_options 输出选项
+     * @param string $method         方法名称
+     * @param mixed  $params         参数
+     * @param array  $output_options 输出选项
      * @return string 完整XML
      */
     public static function encodeRequest($method, $params, array $output_options = [])
@@ -100,8 +99,8 @@ class XmlRpc
 
     /**
      * 解析 XML 请求同时调用方法
-     * @param $xml
-     * @param $user_data
+     * @param       $xml
+     * @param       $user_data
      * @param array $output_options
      * @return string
      */
@@ -152,7 +151,7 @@ class XmlRpc
 
     /**
      * 为一个 PHP 字符串值设置 xmlrpc 的类型、base64 或日期时间
-     * @param mixed $value
+     * @param mixed  $value
      * @param string $type
      * @return bool
      */

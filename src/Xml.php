@@ -1,5 +1,4 @@
 <?php
-/** @noinspection PhpComposerExtensionStubsInspection */
 
 namespace fize\xml;
 
@@ -62,9 +61,9 @@ class Xml
 
     /**
      * 将 XML 数据解析到数组中
-     * @param string $data 待解析数据
-     * @param array $values 指向 values 数组
-     * @param array $index 含有指向 values 数组中对应值的指针
+     * @param string $data   待解析数据
+     * @param array  $values 指向 values 数组
+     * @param array  $index  含有指向 values 数组中对应值的指针
      * @return int 失败返回 0，成功返回 1
      */
     public function parseIntoStruct($data, &$values, &$index = null)
@@ -74,8 +73,8 @@ class Xml
 
     /**
      * 开始解析一个 XML 文档
-     * @param string $data 需要解析的数据集
-     * @param bool $is_final 是否为当前解析中最后一段数据。
+     * @param string $data     需要解析的数据集
+     * @param bool   $is_final 是否为当前解析中最后一段数据。
      * @return int 成功时返回1，失败时返回0
      */
     public function parse($data, $is_final = false)
@@ -85,7 +84,7 @@ class Xml
 
     /**
      * 生成一个支持命名空间的 XML 解析器
-     * @param string $encoding 指定解析后输出数据的编码
+     * @param string $encoding  指定解析后输出数据的编码
      * @param string $separator 命名空间和标签名的分隔符
      * @return resource
      */
@@ -133,8 +132,8 @@ class Xml
      *
      * 参数 `$option` :
      *   可以使用 XML_OPTION_CASE_FOLDING、XML_OPTION_SKIP_TAGSTART、XML_OPTION_SKIP_WHITE、XML_OPTION_TARGET_ENCODING常量
-     * @param int $option 要设置的选项名称
-     * @param mixed $value 要给选项设置的新值。
+     * @param int   $option 要设置的选项名称
+     * @param mixed $value  要给选项设置的新值。
      * @return bool 成功返回true，失败返回false
      */
     public function parserSetOption($option, $value)
@@ -176,7 +175,7 @@ class Xml
      * 参数 `$end_element_handler` :
      *   定义必须为end_element_handler ( resource $parser , string $name )
      * @param callable $start_element_handler 起始元素处理器
-     * @param callable $end_element_handler 终止元素处理器
+     * @param callable $end_element_handler   终止元素处理器
      * @return bool 成功时返回 TRUE， 或者在失败时返回 FALSE。
      */
     public function setElementHandler(callable $start_element_handler, callable $end_element_handler)
