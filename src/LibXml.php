@@ -25,7 +25,7 @@ class LibXml
      * @param bool $disable 为 true 时禁用
      * @return bool 返回设置前的值
      */
-    public static function disableEntityLoader($disable = true)
+    public static function disableEntityLoader(bool $disable = true): bool
     {
         return libxml_disable_entity_loader($disable);
     }
@@ -34,7 +34,7 @@ class LibXml
      * 返回所有的错误组成的数组
      * @return array
      */
-    public static function getErrors()
+    public static function getErrors(): array
     {
         return libxml_get_errors();
     }
@@ -43,7 +43,7 @@ class LibXml
      * 返回最后一个 LibXMLError 错误对象
      * @return LibXMLError
      */
-    public static function getLastError()
+    public static function getLastError(): LibXMLError
     {
         return libxml_get_last_error();
     }
@@ -71,7 +71,7 @@ class LibXml
      * @param bool $use_errors 禁用或启用用户错误句柄
      * @return bool 设置前的上一个值
      */
-    public static function useInternalErrors($use_errors = false)
+    public static function useInternalErrors(bool $use_errors): bool
     {
         return libxml_use_internal_errors($use_errors);
     }

@@ -20,7 +20,7 @@ class SimpleXml
      * @param string  $class_name 要返回的对象类名
      * @return SimpleXMLElement 根据参数$class_name也可能返回SimpleXMLElement扩展类,错误时返回false
      */
-    public static function importDom(DOMNode $node, $class_name = "SimpleXMLElement")
+    public static function importDom(DOMNode $node, string $class_name = "SimpleXMLElement"): SimpleXMLElement
     {
         return simplexml_import_dom($node, $class_name);
     }
@@ -37,7 +37,7 @@ class SimpleXml
      * @param bool   $is_prefix  指定参数$ns是否为命名空间前缀，默认false，即$ns参数是URI
      * @return SimpleXMLElement 根据参数$class_name也可能返回SimpleXMLElement扩展类,错误时返回false
      */
-    public static function loadFile($filename, $class_name = "SimpleXMLElement", $options = 0, $ns = "", $is_prefix = false)
+    public static function loadFile(string $filename, string $class_name = "SimpleXMLElement", int $options = 0, string $ns = "", bool $is_prefix = false): SimpleXMLElement
     {
         return simplexml_load_file($filename, $class_name, $options, $ns, $is_prefix);
     }
@@ -54,7 +54,7 @@ class SimpleXml
      * @param bool   $is_prefix  指定参数$ns是否为命名空间前缀
      * @return SimpleXMLElement 根据参数$class_name也可能返回SimpleXMLElement扩展类,错误时返回false
      */
-    public static function loadString($data, $class_name = "SimpleXMLElement", $options = 0, $ns = "", $is_prefix = false)
+    public static function loadString(string $data, string $class_name = "SimpleXMLElement", int $options = 0, string $ns = "", bool $is_prefix = false): SimpleXMLElement
     {
         return simplexml_load_string($data, $class_name, $options, $ns, $is_prefix);
     }

@@ -14,12 +14,12 @@ class XmlRpc
 
     /**
      * 将 XML 译码为 PHP 本身的类型
-     * @param string $xml      XMLRPC请求体
-     * @param string $method   返回方法名
-     * @param string $encoding 指定编码
+     * @param string      $xml      XMLRPC请求体
+     * @param string      $method   返回方法名
+     * @param string|null $encoding 指定编码
      * @return mixed 返回参数列表
      */
-    public static function decodeRequest($xml, &$method, $encoding = null)
+    public static function decodeRequest(string $xml, string &$method, string $encoding = null)
     {
         return xmlrpc_decode_request($xml, $method, $encoding);
     }
@@ -30,7 +30,7 @@ class XmlRpc
      * @param string $encoding 指定编码
      * @return mixed
      */
-    public static function decode($xml, $encoding = "iso-8859-1")
+    public static function decode(string $xml, string $encoding = "iso-8859-1")
     {
         return xmlrpc_decode($xml, $encoding);
     }
@@ -42,7 +42,7 @@ class XmlRpc
      * @param array  $output_options 输出选项
      * @return string 完整XML
      */
-    public static function encodeRequest($method, $params, array $output_options = [])
+    public static function encodeRequest(string $method, $params, array $output_options = []): string
     {
         return xmlrpc_encode_request($method, $params, $output_options);
     }
@@ -52,7 +52,7 @@ class XmlRpc
      * @param mixed $value 值
      * @return string 完整XML
      */
-    public static function encode($value)
+    public static function encode($value): string
     {
         return xmlrpc_encode($value);
     }
@@ -62,7 +62,7 @@ class XmlRpc
      * @param mixed $value 值
      * @return string 值类型
      */
-    public static function getType($value)
+    public static function getType($value): string
     {
         return xmlrpc_get_type($value);
     }
@@ -72,7 +72,7 @@ class XmlRpc
      * @param array $arg
      * @return bool
      */
-    public static function isFault(array $arg)
+    public static function isFault(array $arg): bool
     {
         return xmlrpc_is_fault($arg);
     }
@@ -82,7 +82,7 @@ class XmlRpc
      * @param $xml
      * @return array
      */
-    public static function parseMethodDescriptions($xml)
+    public static function parseMethodDescriptions($xml): array
     {
         return xmlrpc_parse_method_descriptions($xml);
     }
@@ -92,7 +92,7 @@ class XmlRpc
      * @param array $desc
      * @return int
      */
-    public function addIntrospectionData(array $desc)
+    public function addIntrospectionData(array $desc): int
     {
         return xmlrpc_server_add_introspection_data($this->server, $desc);
     }
@@ -104,7 +104,7 @@ class XmlRpc
      * @param array $output_options
      * @return string
      */
-    public function callMethod($xml, $user_data, array $output_options = [])
+    public function callMethod($xml, $user_data, array $output_options = []): string
     {
         return xmlrpc_server_call_method($this->server, $xml, $user_data, $output_options);
     }
@@ -123,7 +123,7 @@ class XmlRpc
      * 销毁服务端资源
      * @return bool
      */
-    public function destroy()
+    public function destroy(): bool
     {
         return xmlrpc_server_destroy($this->server);
     }
@@ -133,7 +133,7 @@ class XmlRpc
      * @param string $function
      * @return bool
      */
-    public function registerIntrospectionCallback($function)
+    public function registerIntrospectionCallback(string $function): bool
     {
         return xmlrpc_server_register_introspection_callback($this->server, $function);
     }
@@ -144,7 +144,7 @@ class XmlRpc
      * @param string $function
      * @return bool
      */
-    public function registerMethod($method_name, $function)
+    public function registerMethod(string $method_name, string $function): bool
     {
         return xmlrpc_server_register_method($this->server, $method_name, $function);
     }
@@ -155,7 +155,7 @@ class XmlRpc
      * @param string $type
      * @return bool
      */
-    public static function setType(&$value, $type)
+    public static function setType(&$value, string $type): bool
     {
         return xmlrpc_set_type($value, $type);
     }

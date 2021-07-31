@@ -17,7 +17,7 @@ class Dom
      * @param SimpleXMLElement $node SimpleXMLElement对象
      * @return DOMElement
      */
-    public static function importSimpleXml(SimpleXMLElement $node)
+    public static function importSimpleXml(SimpleXMLElement $node): DOMElement
     {
         return dom_import_simplexml($node);
     }

@@ -61,7 +61,7 @@ class Rss
      * @param string $link        定义指向频道的超链接
      * @param string $description 描述频道
      */
-    public function __construct($title, $link, $description)
+    public function __construct(string $title, string $link, string $description)
     {
         $this->doc = new DOMDocument('1.0', 'UTF-8');
 
@@ -91,7 +91,7 @@ class Rss
      * @param array  $attrs 该节点属性
      * @throws Exception
      */
-    public function setChannel($key, $value, array $attrs = [])
+    public function setChannel(string $key, $value, array $attrs = [])
     {
         if (!in_array($key, self::$CHANNEL_KEYS)) {
             throw new Exception("channel节点不支持子节点{$key}");
@@ -122,10 +122,10 @@ class Rss
      *
      * 参数 `$domain` :
      *   字符串或 URL，标识分类的分类法
-     * @param string $category
-     * @param string $domain category 的 domain 属性
+     * @param string      $category
+     * @param string|null $domain category 的 domain 属性
      */
-    public function setChannelCategory($category, $domain = null)
+    public function setChannelCategory(string $category, string $domain = null)
     {
         $attrs = [];
         if (!is_null($domain)) {
@@ -150,14 +150,14 @@ class Rss
      *   默认是 88。最大值是 144。
      * 参数 `$height` :
      *   默认是 31。最大值是 400。
-     * @param string $link        定义提供该频道的网站的超连接
-     * @param string $url         定义图像的 URL
-     * @param string $title       定义当图片不能显示时所显示的替代文本
-     * @param string $description 规定图片链接的 HTML 标题属性中的文本
-     * @param int    $width       定义图像的宽度
-     * @param int    $height      定义图像的高度
+     * @param string      $link        定义提供该频道的网站的超连接
+     * @param string      $url         定义图像的 URL
+     * @param string      $title       定义当图片不能显示时所显示的替代文本
+     * @param string|null $description 规定图片链接的 HTML 标题属性中的文本
+     * @param int|null    $width       定义图像的宽度
+     * @param int|null    $height      定义图像的高度
      */
-    public function setChannelImage($link, $url, $title, $description = null, $width = null, $height = null)
+    public function setChannelImage(string $link, string $url, string $title, string $description = null, int $width = null, int $height = null)
     {
         $image = $this->doc->createElement('image');
 
@@ -188,7 +188,7 @@ class Rss
      * @param string $lang 对应语言简写
      * @throws Exception
      */
-    public function setChannelLanguage($lang)
+    public function setChannelLanguage(string $lang)
     {
         $langs = [
             'af', 'sq', 'eu', 'be', 'bg', 'ca', 'zh-cn', 'zh-tw', 'hr', 'cs',
@@ -212,7 +212,7 @@ class Rss
      * 添加规定在那些天，聚合器忽略更新 feed
      * @param string $day 哪些天
      */
-    public function addChannelSkipDay($day)
+    public function addChannelSkipDay(string $day)
     {
         $dom = $this->doc->createElement('day', $day);
         $this->channelSkipDays->appendChild($dom);
@@ -224,7 +224,7 @@ class Rss
      * 最多可以用24个 <skipHours> 元素。
      * @param int $hour 0 表示午夜。
      */
-    public function addChannelSkipHour($hour)
+    public function addChannelSkipHour(int $hour)
     {
         $dom = $this->doc->createElement('hour', $hour);
         $this->channelSkipHours->appendChild($dom);
@@ -237,7 +237,7 @@ class Rss
      * @param string $link        定义处理文本输入的 CGI 脚本的 URL
      * @param string $description 定义对文本输入域的描述
      */
-    public function setChannelTextInput($name, $title, $link, $description)
+    public function setChannelTextInput(string $name, string $title, string $link, string $description)
     {
         $text_input = $this->doc->createElement('textInput');
 
@@ -262,7 +262,7 @@ class Rss
      * @param array  $addns   其他属性
      * @throws Exception
      */
-    function addItem($title, $link, $description, $pubDate = null, array $addns = [])
+    function addItem(string $title, string $link, string $description, $pubDate = null, array $addns = [])
     {
         $item = $this->doc->createElement('item');
 
@@ -308,7 +308,7 @@ class Rss
      * @param bool $format 是否格式化
      * @return string
      */
-    public function fetch($format = true)
+    public function fetch(bool $format = true): string
     {
         if ($this->channelSkipDays->getElementsByTagName('day')->length > 0) {
             $this->channel->appendChild($this->channelSkipDays);
@@ -326,7 +326,7 @@ class Rss
      * 输出 RSS 的 XML 到浏览器
      * @param bool $format 是否格式化
      */
-    public function display($format = true)
+    public function display(bool $format = true)
     {
         header("Content-Type: text/xml; charset=utf-8");
         echo $this->fetch($format);
@@ -337,11 +337,9 @@ class Rss
      * @param string $path   要保存的文件路径
      * @param bool   $format 是否格式化
      */
-    public function build($path, $format = true)
+    public function build(string $path, bool $format = true)
     {
         $file = new File($path, 'w+');
-        $file->open();
-        $file->write($this->fetch($format));
-        $file->close();
+        $file->fwrite($this->fetch($format));
     }
 }
