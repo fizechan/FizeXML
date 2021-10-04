@@ -16,6 +16,11 @@
   "require": {
     "php": ">=7.0.0"
   },
+  "autoload-dev": {
+    "psr-4": {
+      "tests\\": "tests"
+    }
+  },
   "require-dev": {
     "fize/io": "^4.1.1",
     "guzzlehttp/guzzle": "^6.4.0",
