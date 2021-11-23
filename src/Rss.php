@@ -221,7 +221,7 @@ class Rss
     /**
      * 规定在那些小时，聚合器忽略更新 feed。
      *
-     * 最多可以用24个 <skipHours> 元素。
+     * 最多可以用24个 skipHours 元素。
      * @param int $hour 0 表示午夜。
      */
     public function addChannelSkipHour(int $hour)
@@ -255,14 +255,14 @@ class Rss
 
     /**
      * 添加 item 项
-     * @param string $title
-     * @param string $link
-     * @param string $description
-     * @param mixed  $pubDate 可以是时间戳或者时间字符串
-     * @param array  $addns   其他属性
+     * @param string $title       标题
+     * @param string $link        链接
+     * @param string $description 描述
+     * @param mixed  $pubDate     可以是时间戳或者时间字符串
+     * @param array  $addns       其他属性
      * @throws Exception
      */
-    function addItem(string $title, string $link, string $description, $pubDate = null, array $addns = [])
+    public function addItem(string $title, string $link, string $description, $pubDate = null, array $addns = [])
     {
         $item = $this->doc->createElement('item');
 
@@ -337,7 +337,7 @@ class Rss
      * @param string $path   要保存的文件路径
      * @param bool   $format 是否格式化
      */
-    public function build(string $path, bool $format = true)
+    public function generate(string $path, bool $format = true)
     {
         $file = new File($path, 'w+');
         $file->fwrite($this->fetch($format));
