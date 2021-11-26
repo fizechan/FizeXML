@@ -22,8 +22,8 @@
     }
   },
   "require-dev": {
-    "fize/io": "^4.1.1",
-    "guzzlehttp/guzzle": "^6.4.0",
+    "fize/io": "^5.2.0",
+    "guzzlehttp/guzzle": "^7.4.0",
     "phpunit/phpunit": "^9.5.0"
   },
   "suggest": {
@@ -33,6 +33,6 @@
     "ext-wddx": "*",
     "ext-xml": "*",
     "ext-xmlrpc": "*",
-    "fize/io": "^4.1.1"
+    "fize/io": "^5.2.0"
   }
 }
