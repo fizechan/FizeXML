@@ -1,30 +1,33 @@
 <?php
 
-use PHPUnit\Framework\TestCase;
-use fize\xml\LibXml;
-use fize\xml\SimpleXml;
+namespace tests;
 
-class TestLibXml extends TestCase
+use DOMDocument;
+use fize\xml\LibXML;
+use fize\xml\SimpleXML;
+use PHPUnit\Framework\TestCase;
+
+class TestLibXML extends TestCase
 {
 
     public function testClearErrors()
     {
-        LibXml::useInternalErrors(true);  //接管xml错误处理
-        $sxe = SimpleXml::loadString('this is not xml');
+        LibXML::useInternalErrors(true);  //接管xml错误处理
+        $sxe = SimpleXML::loadString('this is not xml');
 
         if ($sxe === false) {
             echo 'Error while parsing the document';
 
-            $errors = LibXml::getErrors();
+            $errors = LibXML::getErrors();
             var_dump($errors);
 
             self::assertNotEmpty($errors);
 
-            LibXml::clearErrors();
+            LibXML::clearErrors();
 
             echo '***********************************************************\r\n';
 
-            $errors = LibXml::getErrors();  //由于clearErrors，$errors为空
+            $errors = LibXML::getErrors();  //由于clearErrors，$errors为空
             var_dump($errors);
             self::assertEmpty($errors);
         }
@@ -32,37 +35,37 @@ class TestLibXml extends TestCase
 
     public function testDisableEntityLoader()
     {
-        LibXml::useInternalErrors(true);  //接管xml错误处理
-        LibXml::disableEntityLoader(false);
+        LibXML::useInternalErrors(true);  //接管xml错误处理
+        LibXML::disableEntityLoader(false);
 
         $dom = new DOMDocument('1.0');
         $dom->load(__DIR__ . '/data/test2.xml');
         echo $dom->textContent;
 
-        $errors = LibXml::getErrors();  //无错
+        $errors = LibXML::getErrors();  //无错
         self::assertEmpty($errors);
 
-        LibXml::disableEntityLoader();  //禁用后将报错
+        LibXML::disableEntityLoader();  //禁用后将报错
 
         $dom = new DOMDocument('1.0');
         $dom->load(__DIR__ . '/data/test2.xml');
         echo $dom->textContent;
 
-        $errors = LibXml::getErrors();
+        $errors = LibXML::getErrors();
         var_dump($errors);
         self::assertNotEmpty($errors);
     }
 
     public function testGetErrors()
     {
-        LibXml::useInternalErrors(true);  //接管xml错误处理
-        LibXml::disableEntityLoader(true);  //禁用后将报错
+        LibXML::useInternalErrors(true);  //接管xml错误处理
+        LibXML::disableEntityLoader(true);  //禁用后将报错
 
         $dom = new DOMDocument('1.0');
         $dom->load(__DIR__ . '/data/test2.xml');
         echo $dom->textContent;
 
-        $errors = LibXml::getErrors();
+        $errors = LibXML::getErrors();
         var_dump($errors);
         self::assertIsArray($errors);
         self::assertNotEmpty($errors);
@@ -70,14 +73,14 @@ class TestLibXml extends TestCase
 
     public function testGetLastError()
     {
-        LibXml::useInternalErrors(true);  //接管xml错误处理
-        LibXml::disableEntityLoader(true);  //禁用后将报错
+        LibXML::useInternalErrors(true);  //接管xml错误处理
+        LibXML::disableEntityLoader(true);  //禁用后将报错
 
         $dom = new DOMDocument('1.0');
         $dom->load(__DIR__ . '/data/test2.xml');
         echo $dom->textContent;
 
-        $error = LibXml::getLastError();
+        $error = LibXML::getLastError();
         var_dump($error);
         self::assertIsObject($error);
     }
@@ -88,7 +91,7 @@ class TestLibXml extends TestCase
 <!ELEMENT foo (#PCDATA)>
 DTD;
 
-        LibXml::setExternalEntityLoader(function ($public, $system, $context) use($dtd) {
+        LibXML::setExternalEntityLoader(function ($public, $system, $context) use($dtd) {
             var_dump($public);
             var_dump($system);
             var_dump($context);
@@ -98,14 +101,14 @@ DTD;
             return $f;
         });
 
-        LibXml::useInternalErrors(true);  //接管xml错误处理
-        LibXml::disableEntityLoader(true);  //禁用后将报错
+        LibXML::useInternalErrors(true);  //接管xml错误处理
+        LibXML::disableEntityLoader(true);  //禁用后将报错
 
         $dom = new DOMDocument('1.0');
         $dom->load(__DIR__ . '/data/test2.xml');
         echo $dom->textContent;
 
-        $error = LibXml::getLastError();
+        $error = LibXML::getLastError();
         var_dump($error);
         self::assertIsObject($error);
     }
@@ -119,7 +122,7 @@ DTD;
         ];
 
         $context = stream_context_create($opts);
-        LibXml::setStreamsContext($context);
+        LibXML::setStreamsContext($context);
 
         $dom = new DOMDocument('1.0');
         $dom->load(__DIR__ . '/data/test2.xml');
@@ -130,14 +133,14 @@ DTD;
 
     public function testUseInternalErrors()
     {
-        LibXml::useInternalErrors(true);  //接管xml错误处理
-        LibXml::disableEntityLoader(true);  //禁用后将报错
+        LibXML::useInternalErrors(true);  //接管xml错误处理
+        LibXML::disableEntityLoader(true);  //禁用后将报错
 
         $dom = new DOMDocument('1.0');
         $dom->load(__DIR__ . '/data/test2.xml');
         echo $dom->textContent;
 
-        $error = LibXml::getLastError();
+        $error = LibXML::getLastError();
         var_dump($error);
         self::assertIsObject($error);
     }

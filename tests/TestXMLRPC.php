@@ -1,9 +1,12 @@
 <?php
 
-use fize\xml\XmlRpc;
-use PHPUnit\Framework\TestCase;
+namespace tests;
 
-class TestXmlRpc extends TestCase
+use fize\xml\XMLRPC;
+use PHPUnit\Framework\TestCase;
+use stdClass;
+
+class TestXMLRPC extends TestCase
 {
 
     public function testDecodeRequest()
@@ -20,7 +23,7 @@ class TestXmlRpc extends TestCase
 </params>
 </methodCall>
 XML;
-        $params = XmlRpc::decodeRequest($xml, $method);
+        $params = XMLRPC::decodeRequest($xml, $method);
         var_dump($method);
         self::assertIsString($method);
         var_dump($params);
@@ -32,7 +35,7 @@ XML;
         $xml = <<<XML
 <i4>41</i4>
 XML;
-        $param = XmlRpc::decode($xml);
+        $param = XMLRPC::decode($xml);
         var_dump($param);
         self::assertEquals($param, 41);
     }
@@ -41,7 +44,7 @@ XML;
     {
         $method = 'myTestRpcFun';
         $params = ['1', 2, 'OK', '真见鬼了', false, null];
-        $xml = XmlRpc::encodeRequest($method, $params);
+        $xml = XMLRPC::encodeRequest($method, $params);
         echo $xml;
         self::assertIsString($xml);
     }
@@ -49,35 +52,35 @@ XML;
     public function testEncode()
     {
         $value = -110;
-        $xml = XmlRpc::encode($value);
+        $xml = XMLRPC::encode($value);
         echo $xml;
         self::assertIsString($xml);
     }
 
     public function testGetType()
     {
-        $type = XmlRpc::getType(null);
+        $type = XMLRPC::getType(null);
         self::assertEquals($type, 'base64');
 
-        $type = XmlRpc::getType(false);
+        $type = XMLRPC::getType(false);
         self::assertEquals($type, 'boolean');
 
-        $type = XmlRpc::getType(1);
+        $type = XMLRPC::getType(1);
         self::assertEquals($type, 'int');
 
-        $type = XmlRpc::getType(1.0);
+        $type = XMLRPC::getType(1.0);
         self::assertEquals($type, 'double');
 
-        $type = XmlRpc::getType('');
+        $type = XMLRPC::getType('');
         self::assertEquals($type, 'string');
 
-        $type = XmlRpc::getType([]);
+        $type = XMLRPC::getType([]);
         self::assertEquals($type, 'array');
 
-        $type = XmlRpc::getType(new stdClass());
+        $type = XMLRPC::getType(new stdClass());
         self::assertEquals($type, 'array');
 
-        $type = XmlRpc::getType(STDIN);
+        $type = XMLRPC::getType(STDIN);
         self::assertEquals($type, 'int');
     }
 
@@ -103,8 +106,8 @@ XML;
    </fault>
 </methodResponse>
 XML;
-        $response = XmlRpc::decode($xml);
-        self::assertTrue(XmlRpc::isFault($response));
+        $response = XMLRPC::decode($xml);
+        self::assertTrue(XMLRPC::isFault($response));
     }
 
     public function testParseMethodDescriptions()
@@ -121,14 +124,14 @@ XML;
 </params>
 </methodCall>
 XML;
-        $descriptions = XmlRpc::parseMethodDescriptions($xml);
+        $descriptions = XMLRPC::parseMethodDescriptions($xml);
         var_dump($descriptions);
         self::assertIsArray($descriptions);
     }
 
     public function testAddIntrospectionData()
     {
-        $xmlrpc = new XmlRpc();
+        $xmlrpc = new XMLRPC();
         $xmlrpc->create();
         $result = $xmlrpc->addIntrospectionData(['描述1', '描述2']);
         var_dump($result);
@@ -147,7 +150,7 @@ XML;
             return $return;
         }
 
-        $xmlrpc_server = new XmlRpc();
+        $xmlrpc_server = new XMLRPC();
         $xmlrpc_server->create();
         //注册一个服务器端调用的方法rpc_server，实际指向的是rpc_server_func函数
         $xmlrpc_server->registerMethod("rpc_server", "rpc_server_func");
@@ -180,14 +183,14 @@ XML;
 
     public function testCreate()
     {
-        $xmlrpc_server = new XmlRpc();
+        $xmlrpc_server = new XMLRPC();
         $resource = $xmlrpc_server->create();
         self::assertIsResource($resource);
     }
 
     public function testDestroy()
     {
-        $xmlrpc_server = new XmlRpc();
+        $xmlrpc_server = new XMLRPC();
         $xmlrpc_server->create();
         $result = $xmlrpc_server->destroy();
         var_dump($result);
@@ -212,7 +215,7 @@ XML;
             return $return;
         }
 
-        $xmlrpc_server = new XmlRpc();
+        $xmlrpc_server = new XMLRPC();
         $xmlrpc_server->create();
         //注册一个服务器端调用的方法rpc_server，实际指向的是rpc_server_func函数
         $xmlrpc_server->registerMethod("rpc_server", "rpc_server_func");
@@ -246,7 +249,7 @@ XML;
     public function testSetType()
     {
         $value = date('Y-m-d H:i:s');
-        $result = XmlRpc::setType($value, 'datetime');
+        $result = XMLRPC::setType($value, 'datetime');
         self::assertTrue($result);
     }
 }

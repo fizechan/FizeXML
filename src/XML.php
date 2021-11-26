@@ -5,7 +5,7 @@ namespace fize\xml;
 /**
  * XML 解析器
  */
-class Xml
+class XML
 {
 
     /**
@@ -62,11 +62,11 @@ class Xml
     /**
      * 将 XML 数据解析到数组中
      * @param string     $data   待解析数据
-     * @param array      $values 指向 values 数组
+     * @param array|null $values 指向 values 数组
      * @param array|null $index  含有指向 values 数组中对应值的指针
      * @return int 失败返回 0，成功返回 1
      */
-    public function parseIntoStruct(string $data, array &$values, array &$index = null): int
+    public function parseIntoStruct(string $data, ?array &$values, array &$index = null): int
     {
         return xml_parse_into_struct($this->parser, $data, $values, $index);
     }
@@ -77,7 +77,7 @@ class Xml
      * @param bool   $is_final 是否为当前解析中最后一段数据。
      * @return int 成功时返回1，失败时返回0
      */
-    public function parse(string $data, bool $is_final): int
+    public function parse(string $data, bool $is_final = false): int
     {
         return xml_parse($this->parser, $data, $is_final);
     }
@@ -120,7 +120,7 @@ class Xml
      * 参数 `$option` :
      *   可以使用 XML_OPTION_CASE_FOLDING 和 XML_OPTION_TARGET_ENCODING 常量。
      * @param int $option 要获取的设置选项名称
-     * @return mixed 如果失败返回false，同时产生E_WARNING警告
+     * @return int|string 如果失败返回false，同时产生E_WARNING警告
      */
     public function parserGetOption(int $option)
     {

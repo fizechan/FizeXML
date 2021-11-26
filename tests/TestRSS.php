@@ -1,10 +1,12 @@
 <?php
 
+namespace tests;
+
 use PHPUnit\Framework\TestCase;
-use fize\xml\Rss;
+use fize\xml\RSS;
 
 
-class TestRss extends TestCase
+class TestRSS extends TestCase
 {
 
     public function testDisplay()
@@ -21,9 +23,9 @@ class TestRss extends TestCase
         self::assertTrue(true);
     }
 
-	public function testBuild()
+	public function testGenerate()
     {
-        $rss = new Rss('测试百度', 'http://www.baidu.com', '这一次我来测试下百度RSS！');
+        $rss = new RSS('测试百度', 'http://www.baidu.com', '这一次我来测试下百度RSS！');
         $rss->setChannelCategory('RSS', 'syndic8');
         $rss->setChannelCloud([
             'domain' => 'www.runoob.com',
@@ -51,7 +53,7 @@ class TestRss extends TestCase
             'category' => [null, ['domain' => 'syndic8']]
         ]);
 
-        $rss->build('./data/rss.xml');
+        $rss->generate('../temp/rss.xml');
 
         self::assertTrue(true);
 	}

@@ -9,8 +9,9 @@ use fize\io\File;
 
 /**
  * RSS生成
+ * @notice 依赖：fize/io
  */
-class Rss
+class RSS
 {
     /**
      * @var array channel节点支持的子节点名称

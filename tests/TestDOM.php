@@ -1,22 +1,25 @@
 <?php
 
-use PHPUnit\Framework\TestCase;
-use fize\xml\Dom;
-use fize\xml\SimpleXml;
+namespace tests;
 
-class TestDom extends TestCase
+use DOMDocument;
+use fize\xml\DOM;
+use fize\xml\SimpleXML;
+use PHPUnit\Framework\TestCase;
+
+class TestDOM extends TestCase
 {
 
     public function testImportSimplexml()
     {
-        $sxe = SimpleXml::loadString('<books><book><title>blah</title></book></books>');
+        $sxe = SimpleXML::loadString('<books><book><title>blah</title></book></books>');
 
         if ($sxe === false) {
             echo 'Error while parsing the document';
             exit;
         }
 
-        $dom_sxe = Dom::importSimpleXml($sxe);
+        $dom_sxe = DOM::importSimpleXml($sxe);
         if (!$dom_sxe) {
             echo 'Error while converting XML';
             exit;

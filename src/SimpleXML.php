@@ -8,7 +8,7 @@ use SimpleXMLElement;
 /**
  * XML 加载
  */
-class SimpleXml
+class SimpleXML
 {
 
     /**

@@ -1,9 +1,13 @@
 <?php
 
-use fize\xml\SimpleXml;
-use PHPUnit\Framework\TestCase;
+namespace tests;
 
-class TestSimpleXml extends TestCase
+use DOMDocument;
+use fize\xml\SimpleXML;
+use PHPUnit\Framework\TestCase;
+use SimpleXMLElement;
+
+class TestSimpleXML extends TestCase
 {
 
     public function testImportDom()
@@ -15,7 +19,7 @@ class TestSimpleXml extends TestCase
             exit;
         }
 
-        $s = Simplexml::importDom($dom);
+        $s = SimpleXML::importDom($dom);
         var_dump($s);
         self::assertIsObject($s);
 
@@ -26,7 +30,7 @@ class TestSimpleXml extends TestCase
 
     public function testLoadFile()
     {
-        $xml = Simplexml::loadFile(__DIR__ . '/data/rss.xml');
+        $xml = SimpleXML::loadFile(__DIR__ . '/data/rss.xml');
         print_r($xml);
         self::assertInstanceOf(SimpleXMLElement::class, $xml);
     }
@@ -45,7 +49,7 @@ class TestSimpleXml extends TestCase
 </document>
 XML;
 
-        $xml = simplexml::loadString($string);
+        $xml = SimpleXML::loadString($string);
         print_r($xml);
         self::assertInstanceOf(SimpleXMLElement::class, $xml);
     }

@@ -6,10 +6,10 @@ use DOMElement;
 use SimpleXMLElement;
 
 /**
- * Dom管理
+ * DOM管理
  * @notice 需要扩展：ext-dom
  */
-class Dom
+class DOM
 {
 
     /**

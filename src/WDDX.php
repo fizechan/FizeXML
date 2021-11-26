@@ -3,10 +3,10 @@
 namespace fize\xml;
 
 /**
- * Wddx
+ * WDDX
  * @deprecated 该扩展在PHP7.4时已被移除，请勿使用
  */
-class Wddx
+class WDDX
 {
 
     /**

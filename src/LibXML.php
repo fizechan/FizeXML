@@ -7,7 +7,7 @@ use LibXMLError;
 /**
  *  LibXML 扩展
  */
-class LibXml
+class LibXML
 {
 
     /**

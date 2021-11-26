@@ -1,30 +1,16 @@
 <?php
 
-use fize\xml\Xml;
+namespace tests;
+
+use fize\xml\XML;
 use PHPUnit\Framework\TestCase;
 
-class TestXml extends TestCase
+class TestXML extends TestCase
 {
-
-    public function testUtf8Decode()
-    {
-        $str0 = '123456你好！';
-        $str1 = Xml::utf8Encode($str0);
-        $str2 = Xml::utf8Decode($str1);
-        self::assertEquals($str0, $str2);
-    }
-
-    public function testUtf8Encode()
-    {
-        $str = '123456你好！';
-        $str = Xml::utf8Encode($str);
-        var_dump($str);
-        self::assertIsString($str);
-    }
 
     public function testErrorString()
     {
-        $errstr = Xml::errorString(XML_ERROR_PARTIAL_CHAR);
+        $errstr = XML::errorString(XML_ERROR_PARTIAL_CHAR);
         var_dump($errstr);
         self::assertIsString($errstr);
     }
@@ -34,7 +20,7 @@ class TestXml extends TestCase
         //invalid xml file
         $xmlfile = __DIR__ . '/data/invalid.xml';
 
-        $xml = new Xml();
+        $xml = new XML();
         $xml->parserCreate();
         $fp = fopen($xmlfile, 'r');
         while ($xmldata = fread($fp, 4096))
@@ -52,7 +38,7 @@ class TestXml extends TestCase
         //invalid xml file
         $xmlfile = __DIR__ . '/data/invalid.xml';
 
-        $xml = new Xml();
+        $xml = new XML();
         $xml->parserCreate();
         $fp = fopen($xmlfile, 'r');
         while ($xmldata = fread($fp, 4096))
@@ -70,7 +56,7 @@ class TestXml extends TestCase
         //invalid xml file
         $xmlfile = __DIR__ . '/data/invalid.xml';
 
-        $xml = new Xml();
+        $xml = new XML();
         $xml->parserCreate();
         $fp = fopen($xmlfile, 'r');
         while ($xmldata = fread($fp, 4096))
@@ -88,7 +74,7 @@ class TestXml extends TestCase
         //invalid xml file
         $xmlfile = __DIR__ . '/data/invalid.xml';
 
-        $xml = new Xml();
+        $xml = new XML();
         $xml->parserCreate();
         $fp = fopen($xmlfile, 'r');
         while ($xmldata = fread($fp, 4096))
@@ -104,7 +90,7 @@ class TestXml extends TestCase
     public function testParseIntoStruct()
     {
         $simple = "<para><note>simple note</note></para>";
-        $xml = new Xml();
+        $xml = new XML();
         $xml->parserCreate();
         $xml->parseIntoStruct($simple, $vals, $index);
         $xml->parserFree();
@@ -121,7 +107,7 @@ class TestXml extends TestCase
     public function testParse()
     {
         $simple = "<para><note>simple note</note></para>";
-        $xml = new Xml();
+        $xml = new XML();
         $xml->parserCreate();
         $result = $xml->parse($simple);
         self::assertEquals($result, 1);
@@ -129,21 +115,21 @@ class TestXml extends TestCase
 
     public function testParserCreateNs()
     {
-        $xml = new Xml();
+        $xml = new XML();
         $parser = $xml->parserCreateNs();
         self::assertIsResource($parser);
     }
 
     public function testParserCreate()
     {
-        $xml = new Xml();
+        $xml = new XML();
         $parser = $xml->parserCreate();
         self::assertIsResource($parser);
     }
 
     public function testParserFree()
     {
-        $xml = new Xml();
+        $xml = new XML();
         $xml->parserCreate();
         $result = $xml->parserFree();
         self::assertTrue($result);
@@ -151,7 +137,7 @@ class TestXml extends TestCase
 
     public function testParserGetOption()
     {
-        $xml = new Xml();
+        $xml = new XML();
         $xml->parserCreate();
         $opt1 = $xml->parserGetOption(XML_OPTION_TARGET_ENCODING);
         self::assertIsString($opt1);
@@ -159,7 +145,7 @@ class TestXml extends TestCase
 
     public function testParserSetOption()
     {
-        $xml = new Xml();
+        $xml = new XML();
         $xml->parserCreate();
         $result = $xml->parserSetOption(XML_OPTION_TARGET_ENCODING, 'UTF-8');
         self::assertTrue($result);
@@ -167,7 +153,7 @@ class TestXml extends TestCase
 
     public function testSetCharacterDataHandler()
     {
-        $xml = new Xml();
+        $xml = new XML();
         $xml->parserCreate();
         $xml->setCharacterDataHandler(function ($parser, $data) {
             echo "获取的数据：" . $data;
@@ -185,7 +171,7 @@ class TestXml extends TestCase
 
     public function testSetDefaultHandler()
     {
-        $xml = new Xml();
+        $xml = new XML();
         $xml->parserCreate();
         $xml->setDefaultHandler(function ($parser, $data) {
             echo "-->：" . $data;
@@ -203,7 +189,7 @@ class TestXml extends TestCase
 
     public function testSetElementHandler()
     {
-        $xml = new Xml();
+        $xml = new XML();
         $xml->parserCreate();
         $xml->setElementHandler(
             function ($parser, $name, $attribs) {
@@ -227,7 +213,7 @@ class TestXml extends TestCase
 
     public function testSetEndNamespaceDeclHandler()
     {
-        $xml = new Xml();
+        $xml = new XML();
         $xml->parserCreateNs();
         $result = $xml->setEndNamespaceDeclHandler(
             function ($parser, $prefix) {
@@ -249,7 +235,7 @@ class TestXml extends TestCase
 
     public function testSetExternalEntityRefHandler()
     {
-        $xml = new Xml();
+        $xml = new XML();
         $xml->parserCreate();
         $result = $xml->setExternalEntityRefHandler(
             function ($parser, $open_entity_names, $base, $system_id, $public_id) {
@@ -274,7 +260,7 @@ class TestXml extends TestCase
 
     public function testSetNotationDeclHandler()
     {
-        $xml = new Xml();
+        $xml = new XML();
         $xml->parserCreate();
         $result = $xml->setNotationDeclHandler(
             function ($parser, $notation_name, $base, $system_id, $public_id) {
@@ -299,7 +285,7 @@ class TestXml extends TestCase
 
     public function testSetObject()
     {
-        $xml = new Xml();
+        $xml = new XML();
         $xml->parserCreate();
         $result = $xml->setObject($xml);
         self::assertTrue($result);
@@ -307,7 +293,7 @@ class TestXml extends TestCase
 
     public function testSetProcessingInstructionHandler()
     {
-        $xml = new Xml();
+        $xml = new XML();
         $xml->parserCreate();
         $result = $xml->setProcessingInstructionHandler(
             function ($parser, $target, $data) {
@@ -330,7 +316,7 @@ class TestXml extends TestCase
 
     public function testSetStartNamespaceDeclHandler()
     {
-        $xml = new Xml();
+        $xml = new XML();
         $xml->parserCreate();
         $result = $xml->setStartNamespaceDeclHandler(
             function ($parser, $prefix, $uri) {
@@ -353,7 +339,7 @@ class TestXml extends TestCase
 
     public function testSetUnparsedEntityDeclHandler()
     {
-        $xml = new Xml();
+        $xml = new XML();
         $xml->parserCreate();
         $result = $xml->setUnparsedEntityDeclHandler(
             function ($parser, $entity_name, $base, $system_id, $public_id, $notation_name) {

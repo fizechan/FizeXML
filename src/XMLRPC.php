@@ -5,7 +5,7 @@ namespace fize\xml;
 /**
  * XMLRPC
  */
-class XmlRpc
+class XMLRPC
 {
     /**
      * @var resource XMLRPC服务

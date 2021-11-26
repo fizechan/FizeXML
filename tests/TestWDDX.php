@@ -1,21 +1,23 @@
 <?php
 
-use fize\xml\Wddx;
+namespace tests;
+
+use fize\xml\WDDX;
 use PHPUnit\Framework\TestCase;
 
-class TestWddx extends TestCase
+class TestWDDX extends TestCase
 {
 
     public function test__construct()
     {
-        new Wddx();
-        new Wddx('test');
+        new WDDX();
+        new WDDX('test');
         self::assertTrue(true);
     }
 
     public function testPacketStart()
     {
-        $wddx = new Wddx();
+        $wddx = new WDDX();
         $resource = $wddx->packetStart('test');
         self::assertIsResource($resource);
     }
@@ -35,7 +37,7 @@ class TestWddx extends TestCase
         $data_to_serialize = [$date,$books];
 
         //create the packet
-        $wddx = new Wddx("SOME DATA ARRAY");
+        $wddx = new WDDX("SOME DATA ARRAY");
 
         //loop through the data
         foreach($data_to_serialize as $key => $data)
@@ -52,9 +54,9 @@ class TestWddx extends TestCase
     public function testDeserialize()
     {
         $text = "fize";
-        $packet = Wddx::serializeValue($text);
+        $packet = WDDX::serializeValue($text);
         $header = '<?xml version="1.0" encoding="iso-8859-1"?>';
-        $newText = Wddx::deserialize($header . $packet);
+        $newText = WDDX::deserialize($header . $packet);
         echo "WDDX Packet: $packet\n";
         echo "Deserialized Object: $newText\n";
 
@@ -76,7 +78,7 @@ class TestWddx extends TestCase
         $data_to_serialize = [$date,$books];
 
         //create the packet
-        $wddx = new Wddx("SOME DATA ARRAY");
+        $wddx = new WDDX("SOME DATA ARRAY");
 
         //loop through the data
         foreach($data_to_serialize as $key => $data)
@@ -93,9 +95,9 @@ class TestWddx extends TestCase
     public function testSerializeValue()
     {
         $text = "fize";
-        $packet = Wddx::serializeValue($text);
+        $packet = WDDX::serializeValue($text);
         $header = '<?xml version="1.0" encoding="iso-8859-1"?>';
-        $newText = Wddx::deserialize($header . $packet);
+        $newText = WDDX::deserialize($header . $packet);
         echo "WDDX Packet: $packet\n";
         echo "Deserialized Object: $newText\n";
 
@@ -115,7 +117,7 @@ class TestWddx extends TestCase
         var_dump($d);
 
         $clvars = ["c", "d"];
-        $str1 = Wddx::serializeVars("a", "b", $clvars);
+        $str1 = WDDX::serializeVars("a", "b", $clvars);
         $str2 = wddx_serialize_vars("a", "b", $clvars);
 
         self::assertNotEquals($str2, $str1);  //恰恰说明了这个方法是有问题的。
