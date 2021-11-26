@@ -1,8 +1,8 @@
 <?php
 
-namespace tests;
+namespace Tests;
 
-use fize\xml\XMLRPC;
+use Fize\XML\XMLRPC;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 

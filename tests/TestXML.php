@@ -1,8 +1,8 @@
 <?php
 
-namespace tests;
+namespace Tests;
 
-use fize\xml\XML;
+use Fize\XML\XML;
 use PHPUnit\Framework\TestCase;
 
 class TestXML extends TestCase

@@ -1,6 +1,6 @@
 <?php
 
-namespace fize\xml;
+namespace Fize\XML;
 
 /**
  * XML 解析器

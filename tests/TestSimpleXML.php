@@ -1,9 +1,9 @@
 <?php
 
-namespace tests;
+namespace Tests;
 
 use DOMDocument;
-use fize\xml\SimpleXML;
+use Fize\XML\SimpleXML;
 use PHPUnit\Framework\TestCase;
 use SimpleXMLElement;
 

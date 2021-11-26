@@ -1,10 +1,10 @@
 <?php
 
-namespace tests;
+namespace Tests;
 
 use DOMDocument;
-use fize\xml\DOM;
-use fize\xml\SimpleXML;
+use Fize\XML\DOM;
+use Fize\XML\SimpleXML;
 use PHPUnit\Framework\TestCase;
 
 class TestDOM extends TestCase

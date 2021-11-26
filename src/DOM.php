@@ -1,6 +1,6 @@
 <?php
 
-namespace fize\xml;
+namespace Fize\XML;
 
 use DOMElement;
 use SimpleXMLElement;

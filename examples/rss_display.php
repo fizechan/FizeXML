@@ -1,7 +1,7 @@
 <?php
-require_once "../../vendor/autoload.php";
+require_once "../vendor/autoload.php";
 
-use fize\xml\RSS;
+use Fize\XML\RSS;
 
 $rss = new RSS('测试百度', 'http://www.baidu.com', '这一次我来测试下百度RSS！');
 $rss->setChannelCategory('RSS', 'syndic8');

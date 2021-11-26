@@ -10,21 +10,11 @@
   ],
   "autoload": {
     "psr-4": {
-      "fize\\xml\\": "src"
+      "Fize\\XML\\": "src"
     }
   },
   "require": {
     "php": ">=7.1.0"
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "tests\\": "tests"
-    }
-  },
-  "require-dev": {
-    "fize/io": "^5.2.0",
-    "guzzlehttp/guzzle": "^7.4.0",
-    "phpunit/phpunit": "^9.5.0"
   },
   "suggest": {
     "ext-dom": "*",
@@ -33,6 +23,16 @@
     "ext-wddx": "*",
     "ext-xml": "*",
     "ext-xmlrpc": "*",
-    "fize/io": "^5.2.0"
+    "fize/io": "^6.0.0"
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests"
+    }
+  },
+  "require-dev": {
+    "fize/io": "^6.0.0",
+    "guzzlehttp/guzzle": "^7.4.0",
+    "phpunit/phpunit": "^9.5.0"
   }
 }

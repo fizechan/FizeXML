@@ -1,9 +1,9 @@
 <?php
 
-namespace tests;
+namespace Tests;
 
 use PHPUnit\Framework\TestCase;
-use fize\xml\RSS;
+use Fize\XML\RSS;
 
 
 class TestRSS extends TestCase

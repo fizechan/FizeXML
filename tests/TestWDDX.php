@@ -1,8 +1,8 @@
 <?php
 
-namespace tests;
+namespace Tests;
 
-use fize\xml\WDDX;
+use Fize\XML\WDDX;
 use PHPUnit\Framework\TestCase;
 
 class TestWDDX extends TestCase
