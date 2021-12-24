@@ -23,7 +23,7 @@
     "ext-wddx": "*",
     "ext-xml": "*",
     "ext-xmlrpc": "*",
-    "fize/io": "^6.0.0"
+    "fize/io": "^7.0.0"
   },
   "autoload-dev": {
     "psr-4": {
@@ -31,7 +31,7 @@
     }
   },
   "require-dev": {
-    "fize/io": "^6.0.0",
+    "fize/io": "^7.0.0",
     "guzzlehttp/guzzle": "^7.4.0",
     "phpunit/phpunit": "^9.5.0"
   }
