@@ -5,7 +5,6 @@ namespace Fize\XML;
 use DOMDocument;
 use DOMElement;
 use Exception;
-use fize\io\File;
 
 /**
  * RSS生成
@@ -95,7 +94,7 @@ class RSS
     public function setChannel(string $key, $value, array $attrs = [])
     {
         if (!in_array($key, self::$CHANNEL_KEYS)) {
-            throw new Exception("channel节点不支持子节点{$key}");
+            throw new Exception("channel节点不支持子节点$key");
         }
 
         if ($value instanceof DOMElement) {
@@ -285,7 +284,7 @@ class RSS
 
         foreach ($addns as $k => $v) {
             if (!in_array($k, self::$ITEM_KEYS)) {
-                throw new Exception("item节点不支持子节点{$k}");
+                throw new Exception("item节点不支持子节点$k");
             }
 
             if (is_array($v)) {
@@ -340,7 +339,6 @@ class RSS
      */
     public function generate(string $path, bool $format = true)
     {
-        $file = new File($path, 'w+');
-        $file->fwrite($this->fetch($format));
+        file_put_contents($path, $this->fetch($format));
     }
 }

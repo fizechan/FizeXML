@@ -22,8 +22,7 @@
     "ext-simplexml": "*",
     "ext-wddx": "*",
     "ext-xml": "*",
-    "ext-xmlrpc": "*",
-    "fize/io": "^7.0.0"
+    "ext-xmlrpc": "*"
   },
   "autoload-dev": {
     "psr-4": {
