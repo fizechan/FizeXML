@@ -50,7 +50,7 @@ class LibXML
 
     /**
      * 更改默认的外部实体加载程序
-     * @param callable 实体加载程序回调函数
+     * @param callable $resolver_function 实体加载程序回调函数
      */
     public static function setExternalEntityLoader(callable $resolver_function)
     {

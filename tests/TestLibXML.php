@@ -59,7 +59,7 @@ class TestLibXML extends TestCase
     public function testGetErrors()
     {
         LibXML::useInternalErrors(true);  //接管xml错误处理
-        LibXML::disableEntityLoader(true);  //禁用后将报错
+        LibXML::disableEntityLoader();  //禁用后将报错
 
         $dom = new DOMDocument('1.0');
         $dom->load(__DIR__ . '/data/test2.xml');
@@ -74,7 +74,7 @@ class TestLibXML extends TestCase
     public function testGetLastError()
     {
         LibXML::useInternalErrors(true);  //接管xml错误处理
-        LibXML::disableEntityLoader(true);  //禁用后将报错
+        LibXML::disableEntityLoader();  //禁用后将报错
 
         $dom = new DOMDocument('1.0');
         $dom->load(__DIR__ . '/data/test2.xml');
@@ -91,7 +91,7 @@ class TestLibXML extends TestCase
 <!ELEMENT foo (#PCDATA)>
 DTD;
 
-        LibXML::setExternalEntityLoader(function ($public, $system, $context) use($dtd) {
+        LibXML::setExternalEntityLoader(function ($public, $system, $context) use ($dtd) {
             var_dump($public);
             var_dump($system);
             var_dump($context);
@@ -134,7 +134,7 @@ DTD;
     public function testUseInternalErrors()
     {
         LibXML::useInternalErrors(true);  //接管xml错误处理
-        LibXML::disableEntityLoader(true);  //禁用后将报错
+        LibXML::disableEntityLoader();  //禁用后将报错
 
         $dom = new DOMDocument('1.0');
         $dom->load(__DIR__ . '/data/test2.xml');

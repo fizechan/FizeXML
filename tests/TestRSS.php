@@ -2,8 +2,8 @@
 
 namespace Tests;
 
-use PHPUnit\Framework\TestCase;
 use Fize\XML\RSS;
+use PHPUnit\Framework\TestCase;
 
 
 class TestRSS extends TestCase
@@ -23,16 +23,16 @@ class TestRSS extends TestCase
         self::assertTrue(true);
     }
 
-	public function testGenerate()
+    public function testGenerate()
     {
         $rss = new RSS('测试百度', 'http://www.baidu.com', '这一次我来测试下百度RSS！');
         $rss->setChannelCategory('RSS', 'syndic8');
         $rss->setChannelCloud([
-            'domain' => 'www.runoob.com',
-            'port' => 80,
-            'path' => '/RPC',
+            'domain'            => 'www.runoob.com',
+            'port'              => 80,
+            'path'              => '/RPC',
             'registerProcedure' => 'NotifyMe',
-            'protocol' => 'xml-rpc'
+            'protocol'          => 'xml-rpc'
         ]);
         $rss->setChannelImage('http://www.runoob.com', 'http://www.runoob.com/images/logo.png', '菜鸟教程');
         $rss->setChannelLanguage('zh-cn');
@@ -49,12 +49,12 @@ class TestRSS extends TestCase
             'author' => '411370875@qq.com'
         ]);
         $rss->addItem('HTML 教程', 'http://www.runoob.com/html', '菜鸟教程 HTML 教程', time(), [
-            'author' => '411370875@qq.com',
+            'author'   => '411370875@qq.com',
             'category' => [null, ['domain' => 'syndic8']]
         ]);
 
         $rss->generate('../temp/rss.xml');
 
         self::assertTrue(true);
-	}
+    }
 }

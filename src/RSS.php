@@ -8,7 +8,6 @@ use Exception;
 
 /**
  * RSS生成
- * @notice 依赖：fize/io
  */
 class RSS
 {
@@ -64,19 +63,15 @@ class RSS
     public function __construct(string $title, string $link, string $description)
     {
         $this->doc = new DOMDocument('1.0', 'UTF-8');
-
         $this->rss = $this->doc->createElement('rss');
         $this->rss->setAttribute('version', '2.0');
-
         $this->channel = $this->doc->createElement('channel');
-
         $this->setChannel('title', $title);
         $this->setChannel('link', $link);
         $this->setChannel('description', $description);
         $this->setChannel('language', '	zh-cn');
         $this->setChannel('lastBuildDate', date('Y-m-d H:i:s'));
         $this->setChannel('pubDate', date('Y-m-d H:i:s'));
-
         $this->channelSkipDays = $this->doc->createElement('skipDays');
         $this->channelSkipHours = $this->doc->createElement('skipHours');
     }
@@ -160,7 +155,6 @@ class RSS
     public function setChannelImage(string $link, string $url, string $title, string $description = null, int $width = null, int $height = null)
     {
         $image = $this->doc->createElement('image');
-
         $link = $this->doc->createElement('link', $link);
         $image->appendChild($link);
         $url = $this->doc->createElement('url', $url);
@@ -191,16 +185,15 @@ class RSS
     public function setChannelLanguage(string $lang)
     {
         $langs = [
-            'af', 'sq', 'eu', 'be', 'bg', 'ca', 'zh-cn', 'zh-tw', 'hr', 'cs',
-            'da', 'nl', 'nl-be', 'nl-nl', 'en', 'en-au', 'en-bz', 'en-ca', 'en-ie', 'en-jm',
-            'en-nz', 'en-tt', 'en-gb', 'en-us', 'en-zw', 'et', 'fo', 'fi', 'fr', 'fr-be',
-            'fr-ca', 'fr-fr', 'fr-lu', 'fr-mc', 'fr-ch', 'gl', 'gd', 'de', 'de-at', 'de-de',
-            'de-li', 'de-lu', 'de-ch', 'el', 'haw', 'hu', 'is', 'in', 'ga', 'it',
-            'it-it', 'it-ch', 'ja', 'ko', 'mk', 'no', 'pl', 'pt', 'pt-br', 'pt-pt',
-            'ro', 'ro-mo', 'ro-ro', 'ru', 'ru-mo', 'ru-ru', 'sr', 'sk', 'sl', 'es',
-            'es-ar', 'es-bo', 'es-cl', 'es-co', 'es-cr', 'es-do', 'es-ec', 'es-sv', 'es-gt', 'es-hn',
-            'es-mx', 'es-ni', 'es-pa', 'es-py', 'es-pe', 'es-pr', 'es-es', 'es-uy', 'es-ve', 'sv',
-            'sv-fi', 'sv-se', 'tr', 'uk'
+            'af', 'sq', 'eu', 'be', 'bg', 'ca', 'zh-cn', 'zh-tw', 'hr', 'cs', 'da', 'nl', 'nl-be', 'nl-nl',
+            'en', 'en-au', 'en-bz', 'en-ca', 'en-ie', 'en-jm', 'en-nz', 'en-tt', 'en-gb', 'en-us', 'en-zw',
+            'et', 'fo', 'fi', 'fr', 'fr-be', 'fr-ca', 'fr-fr', 'fr-lu', 'fr-mc', 'fr-ch', 'gl', 'gd',
+            'de', 'de-at', 'de-de', 'de-li', 'de-lu', 'de-ch', 'el', 'haw', 'hu', 'is', 'in', 'ga',
+            'it', 'it-it', 'it-ch', 'ja', 'ko', 'mk', 'no', 'pl', 'pt', 'pt-br', 'pt-pt',
+            'ro', 'ro-mo', 'ro-ro', 'ru', 'ru-mo', 'ru-ru', 'sr', 'sk', 'sl',
+            'es', 'es-ar', 'es-bo', 'es-cl', 'es-co', 'es-cr', 'es-do', 'es-ec', 'es-sv', 'es-gt', 'es-hn',
+            'es-mx', 'es-ni', 'es-pa', 'es-py', 'es-pe', 'es-pr', 'es-es', 'es-uy', 'es-ve',
+            'sv', 'sv-fi', 'sv-se', 'tr', 'uk'
         ];
         if (!in_array($lang, $langs)) {
             throw new Exception("channel子节点language不支持该语言");
@@ -240,7 +233,6 @@ class RSS
     public function setChannelTextInput(string $name, string $title, string $link, string $description)
     {
         $text_input = $this->doc->createElement('textInput');
-
         $name = $this->doc->createElement('name', $name);
         $text_input->appendChild($name);
         $title = $this->doc->createElement('title', $title);
@@ -249,7 +241,6 @@ class RSS
         $text_input->appendChild($link);
         $description = $this->doc->createElement('description', $description);
         $text_input->appendChild($description);
-
         $this->channel->appendChild($text_input);
     }
 

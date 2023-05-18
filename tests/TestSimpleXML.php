@@ -14,11 +14,6 @@ class TestSimpleXML extends TestCase
     {
         $dom = new DOMDocument;
         $dom->loadXML('<root><book><title>blah</title></book></root>');
-        if (!$dom) {
-            echo 'Error while parsing the document';
-            exit;
-        }
-
         $s = SimpleXML::importDom($dom);
         var_dump($s);
         self::assertIsObject($s);

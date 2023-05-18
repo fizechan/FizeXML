@@ -14,14 +14,14 @@
     }
   },
   "require": {
-    "php": ">=7.1.0"
-  },
-  "suggest": {
+    "php": ">=7.1.0",
     "ext-dom": "*",
     "ext-libxml": "*",
     "ext-simplexml": "*",
+    "ext-xml": "*"
+  },
+  "suggest": {
     "ext-wddx": "*",
-    "ext-xml": "*",
     "ext-xmlrpc": "*"
   },
   "autoload-dev": {
@@ -30,7 +30,6 @@
     }
   },
   "require-dev": {
-    "fize/io": "^7.0.0",
     "guzzlehttp/guzzle": "^7.4.0",
     "phpunit/phpunit": "^9.5.0"
   }

@@ -110,7 +110,7 @@ class TestXML extends TestCase
         $xml = new XML();
         $xml->parserCreate();
         $result = $xml->parse($simple);
-        self::assertEquals($result, 1);
+        self::assertEquals(1, $result);
     }
 
     public function testParserCreateNs()

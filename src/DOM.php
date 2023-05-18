@@ -7,7 +7,6 @@ use SimpleXMLElement;
 
 /**
  * DOM管理
- * @notice 需要扩展：ext-dom
  */
 class DOM
 {

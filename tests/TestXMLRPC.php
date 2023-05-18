@@ -37,7 +37,7 @@ XML;
 XML;
         $param = XMLRPC::decode($xml);
         var_dump($param);
-        self::assertEquals($param, 41);
+        self::assertEquals(41, $param);
     }
 
     public function testEncodeRequest()
@@ -60,28 +60,28 @@ XML;
     public function testGetType()
     {
         $type = XMLRPC::getType(null);
-        self::assertEquals($type, 'base64');
+        self::assertEquals('base64', $type);
 
         $type = XMLRPC::getType(false);
-        self::assertEquals($type, 'boolean');
+        self::assertEquals('boolean', $type);
 
         $type = XMLRPC::getType(1);
-        self::assertEquals($type, 'int');
+        self::assertEquals('int', $type);
 
         $type = XMLRPC::getType(1.0);
-        self::assertEquals($type, 'double');
+        self::assertEquals('double', $type);
 
         $type = XMLRPC::getType('');
-        self::assertEquals($type, 'string');
+        self::assertEquals('string', $type);
 
         $type = XMLRPC::getType([]);
-        self::assertEquals($type, 'array');
+        self::assertEquals('array', $type);
 
         $type = XMLRPC::getType(new stdClass());
-        self::assertEquals($type, 'array');
+        self::assertEquals('array', $type);
 
         $type = XMLRPC::getType(STDIN);
-        self::assertEquals($type, 'int');
+        self::assertEquals('int', $type);
     }
 
     public function testIsFault()
@@ -140,12 +140,13 @@ XML;
 
     public function testCallMethod()
     {
-        function rpc_server_func($method, $params) {
+        function rpc_server_func($method, $params): string
+        {
             $parameter = $params[0];
             if ($parameter == "get") {
-                $return = 'This data by get method';
+                $return = "$method, This data by get method";
             } else {
-                $return = 'Not specify method or params';
+                $return = "$method, Not specify method or params";
             }
             return $return;
         }
@@ -205,12 +206,13 @@ XML;
 
     public function testRegisterMethod()
     {
-        function rpc_server_func($method, $params) {
+        function rpc_server_func($method, $params): string
+        {
             $parameter = $params[0];
             if ($parameter == "get") {
-                $return = 'This data by get method';
+                $return = "$method, This data by get method";
             } else {
-                $return = 'Not specify method or params';
+                $return = "$method, Not specify method or params";
             }
             return $return;
         }
